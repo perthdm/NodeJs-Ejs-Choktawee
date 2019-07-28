@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+    <title>Login</title>
+
+    <style>
+        .shadow {
+            -webkit-box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.75);
+            box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.75);
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <div class="triangle"> </div>
+
+    <div style="z-index: 1000; ; position: absolute; min-width: 500px;">
+        <div style="display:flex ; justify-content: center ; align-items: center ;width:100vw ; height: 100vh; ">
+            <div>
+
+                <center> <img src="/images/logo.svg" style="width:150px"></center>
+
+                <p style="font-size:30px ;  color:white ; text-align: center ; margin-top:10px ;text-shadow: 1px 1px">
+                    เข้าสู่ระบบ</p>
+                <form id="login" onsubmit="return validateForm()" action="/" method="POST">
+
+                    <div style="background-color:white ; width: 28vw; height: auto; border-radius: 10px ; margin-top:20px ;padding-bottom: 20px"
+                        class="shadow">
+                        <div
+                            style="padding-top:6% ; padding-left: 5%; padding-right: 5%;  display: flex ;justify-content: center">
+                            <div style="width:90%">
+                                <p>ชื่อผู้ใช้งาน</p>
+                                <input class="form-control" name="username" type="text" maxlength="20">
+                            </div>
+                        </div>
+
+                        <div
+                            style="padding-top:3% ; padding-left: 5%; padding-right: 5%;  display: flex ;justify-content: center">
+                            <div style="width:90%">
+                                <p>รหัสผ่าน</p>
+                                <input class="form-control" type="password" name="password" maxlength="25">
+                            </div>
+                        </div>
+
+                        <div
+                            style="margin-top:5% ; padding-left: 5%; padding-right: 5%;  display: flex ;justify-content: center">
+                            <div style="width:90%">
+                                <button class="btn-green btn-full" style="text-align:center ;font-size: 16px">
+                                    <span><i class="fas fa-sign-in-alt"></i> </span>เข้าสู่ระบบ
+                                </button>
+                            </div>
+                        </div>
+
+                </form>
+                <div
+                    style="margin-top:2% ; padding-left: 5%; padding-right: 5%;  display: flex ; justify-content: center">
+                    <div style="width:45% ; text-align: left">
+                        <a style="text-decoration:none" href="/forgetpassword">ลืมรหัสผ่าน</a>
+                    </div>
+                    <div style="width:45% ; text-align: right">
+                        <a style="text-decoration:none" href="/changepassword">เปลี่ยนรหัสผ่าน</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+
+
+</body>
+
+<%- include('../layouts/javascript'); -%>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script>
+    function validateForm() {
+        var x = document.getElementById("login").getElementsByClassName("form-control");
+
+        console.log(x);
+
+        for (var i = 0; i < x.length; i++) {
+            console.log(x[i].value)
+            if (x[i].value == "") {
+                swal({
+                    title: "",
+                    text: "กรุณากรอกข้อมูลให้ครบถ้วน",
+                    icon: "error",
+                    button: "ตกลง",
+
+                })
+
+                return false;
+            }
+
+        }
+
+
+    }
+
+
+
+
+    $(document).ready(function () {
+        //called when key is pressed in textbox
+        $("#idCard,#tel,#zipCode").keypress(function (e) {
+            //if the letter is not digit then display error and don't type anything
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                //display error message
+                //   $("#errmsg").html("กรุณากรอกเลชบัตรประชาชนให้ถูกต้อง").show().fadeOut("slow");
+                return false;
+            }
+        });
+    });
+
+
+    if ("<%= status %>" == 1) {
+        swal({
+            title: "กรุณาลองใหม่อีกครั้ง",
+            text: "<%= message %>",
+            icon: "error",
+            button: "ตกลง",
+        });
+    }
+</script>
+
+</html>
+<%- include('../layouts/javascript'); -%>

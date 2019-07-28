@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="/images/favicon.ico" />
+    <title>ใบข้อมูลเดินทะเบียน</title>
+    <style>
+        .a4 {
+            border: 1px solid black;
+            width: 768px;
+            height: 1024px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            line-height: 30px;
+            padding: 1px
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- contenr -->
+    <center>
+        <div class="a4">
+            <img src="/images/logo.svg" width="140" height="140" style="margin-top:20px">
+            <h3>บริษัทโชคทวีออโต้เซลล์</h3>
+            <h2>ใบข้อมูลเดินทะเบียน</h2>
+            <div style="display: flex;   width: 90% ; border: 1px solid black">
+
+                <div style=" width: 50% ; right: 0 ; text-align: left ; padding-left: 40px ; margin-top:20px">
+                    <p>เลขประจำตัวผู้เดินทะเบียน : 1-2346-7890-1231</p>
+                    <p>บริษัท 9Developer</p>
+                    <p>12/8 ถ.วิภาวดีรังสิต หลักสี่ ดอนเมือง กทม 10210</p>
+                    <p>โทรศัพท์ : 029874562</p>
+                    <p>Fax : 029874562</p>
+                    <br>
+                </div>
+
+                <div style=" width: 50% ; right: 0 ; text-align: left ; padding-right:10px; margin-top:20px ">
+                    <div style="margin-left:20%">
+                        <p>เลขที่ : <%= result._id %></p>
+                        <p>วันที่ : <%= result.date.toLocaleDateString() %></p>
+                    </div>
+                </div>
+
+            </div>
+
+            <h3 style="text-align:left ;  width:90%">ข้อมูลการเดินทะเบียน</h3>
+            <div style="display: flex;   width: 90% ; border: 1px solid black ">
+
+                <div
+                    style="padding-right: 40px ; text-align: left ; padding-left: 40px ; margin-top:20px; width:100%;margin-bottom:20px;">
+                    <p style="font-weight:bold ; font-size:15px">ชื่อลูกค้า</p>
+                    <p>ชื่อลูกค้า : <%= result.order.customer.firstname %> <%= result.order.customer.lastname %></p>
+
+
+
+                    <p style="font-weight:bold ; font-size:15px; padding-top: 30px">ข้อมูลเดินทะเบียน</p>
+                    <table style="width:100%; ">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center">ลำดับที่</th>
+                                <th style="text-align:center">ยี่ห้อ</th>
+                                <th style="text-align:center">รุ่น</th>
+                                <th style="text-align:center">เลขทะเบียน</th>
+                                <th style="text-align:center">เลขเครื่องยนต์</th>
+                                <th style="text-align:center">เลขตัวถัง</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(var i = 0 ; i < result.order.renew.length ; i++) { %>
+                            <tr>
+                                <td style="text-align:center"><%= i+1 %></td>
+                                <td><%= result.order.renew[i][0] %> </td>
+                                <td><%= result.order.renew[i][1] %></td>
+                                <td><%= result.order.renew[i][2] %></td>
+                                <td><%= result.order.renew[i][3] %></td>
+                                <td><%= result.order.renew[i][4] %></td>
+                            </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+
+            </div>
+
+            <div style="text-align:right ; margin-top:30px ; margin-right:20px">
+                <p>ลงชื่อ : ...................................................................ผู้เดินทะเบียน</p>
+                <p>วันที่ :
+                    ...................................................................................................
+                </p>
+            </div>
+
+
+        </div>
+    </center>
+
+
+    
+
+
+</body>
+
+</html>

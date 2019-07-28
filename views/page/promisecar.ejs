@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>สัญญาซื้อขายรถยนต์</title>
+    <style>
+        .fixed-a4 {
+            border: 1px solid black;
+            width: 768px;
+            height: 1024px;
+        }
+
+        .fixed-right {
+            text-align: right;
+            margin-right: 5%;
+        }
+
+        .fixed-left {
+            text-align: left;
+            margin-left: 5%;
+            margin-right: 5%
+        }
+
+        .fixed-top {
+            margin-top: -20%;
+            margin-left: 20%;
+        }
+
+        p {
+            font-size: 14px;
+        }
+
+        #p1 {
+            margin-left: 10%;
+        }
+
+        span {
+            font-size: 14px;
+            margin-left: 10%;
+            margin-right: 5%;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <div class="fixed-a4">
+            <div class="fixed-left" style="margin-top:5%">
+                <img src="/images/logo.png" width="100px;" height="auto">
+                <div class="fixed-top">
+                    <h3>
+                        บริษัทโชคทวีออโต้เซลล์
+                    </h3>
+                    <p style="margin-left:0%;">88/888 อ.แสนสุข เขต บางแสน<br> จังหวัด ชลบุรี 27210<br> โทรศัพท์
+                        0912345678<br> เลขประจำตัวผู้เสียภาษี
+                        <br> 1234567890123/สำนักงานใหญ่
+                    </p>
+                </div>
+            </div>
+            <h3>สัญญาซื้อขาย</h3>
+            <div class="fixed-right">
+                <p>เขียนที่ บริษัทโชคทวีออโต้เซลล์ <br> วันที่ 01/01/2562 </p>
+            </div>
+            <div class="fixed-left">
+                <p><span>หนังสือสัญญาซื้อขายระหว่าง
+                        <% if(result.type == "การขาย") { %>
+                        <b>นาย มานพ พรรคดี</b>
+                        เลขบัตรประชาชน 12311444519
+                        บ้านเลขที่ 44/44
+                        ถนน ข้าวหลาม
+                        ตำบล/แขวง คลองแสนดี
+                        อำเภอ/เขต บ้านแสนสุข
+                        จังหวัด ชลบุรี
+                        รหัสไปรษณีย์ 20130
+                        โทรศัพท์ 0912345678
+                    </span>
+                    <% }else { %>
+
+                    <b><%= result.order.customer.firstname %> <%= result.order.customer.lastname %></b> เลขบัตรประชาชน
+                    <%=result.order.customer.idCard %>
+                    บ้านเลขที่
+                    <%=result.order.customer.address.addressNumber %>
+                    ถนน
+                    <%=result.order.customer.address.street %>
+                    ตำบล/แขวง
+                    <%=result.order.customer.address.subdistrict %>
+                    อำเภอ/เขต
+                    <%=result.order.customer.address.district %>
+                    จังหวัด
+                    <%=result.order.customer.address.province %>
+                    รหัสไปรษณีย์
+                    <%=result.order.customer.address.zipCode %>
+                    โทรศัพท์
+                    <%=result.order.customer.tel %>
+
+
+                    <% } %>
+
+                    ออกโดย บริษัทโชคทวีออโต้เซลล์ เมื่อวันที่ 05/01/2562 ซึ่งในที่นี้เรียกว่า"ผู้ขาย" ฝ่ายหนึ่งกับ
+
+
+                    <% if(result.type == "การขาย") { %>
+                    <b><%= result.order.customer.firstname %> <%= result.order.customer.lastname %></b> เลขบัตรประชาชน
+                    <%=result.order.customer.idCard %>
+                    บ้านเลขที่
+                    <%=result.order.customer.address.addressNumber %>
+                    ถนน
+                    <%=result.order.customer.address.street %>
+                    ตำบล
+                    <%=result.order.customer.address.subdistrict %>
+                    อำเภอ
+                    <%=result.order.customer.address.district %>
+                    จังหวัด
+                    <%=result.order.customer.address.province %>
+                    รหัสไปรษณีย์
+                    <%=result.order.customer.address.zipCode %>
+                    โทรศัพท์
+                    <%=result.order.customer.tel %>
+
+
+                    <% }else { %>
+                    <b>นาย มานพ พรรคดี</b> เลขบัตรประชาชน 12311444519 บ้านเลขที่ 44/44 ถนน ข้าวหลาม ตำบล/แขวง คลองแสนดี
+                    อำเภอ/เขต บ้านแสนสุข จังหวัด ชลบุรี รหัสไปรษณีย์ 20130
+                    โทรศัพท์ 0912345678
+                    <% } %>
+
+
+                    ออกโดย บริษัทโชคทวีออโต้เซลล์ เมื่อวันที่ 08/01/2562
+                    ซึ่งในที่นี้เรียกว่า"ผู้ซื้อ"อีกฝ่ายหนึ่งทั้งสองฝ่ายได้ตกลงทำสัญญาต่อไปนี้
+                    <br>
+                    <br>
+                    <span>"ผู้ขาย" ตกลงขายและ "ผู้ซื้อ" ตกลงซื้อรถยนต์ยี่ห้อ <%= result.order.car.brand %>
+                        รุ่น <%= result.order.car.model %>
+                        สี <%= result.order.car.color %>
+                        หมายเลขทะเบียนรถยนต์ <%= result.order.car.No %>
+                        หมายเลขเครื่องยนต์ <%= result.order.car.engineNo %>
+                        หมายเลขตัวถังรถยนต์ <%= result.order.car.chassisNo %>
+                        ตกลงซื้อขายในราคา <%= result.order.car.price %> บาท <br>
+
+                        <br>
+                        <span>"ผู้ขาย" ให้คำมั่นสัญญาว่า รถยนต์คนดังกล่าวข้างต้นที่นำมาขายให้กับ "ผู้ซื้อ"
+                            เป็นทรัพย์สินของ
+                            "ผู้ขาย"</span><br> แต่เพียงผู้เดียวมิได้นำไปจำนอง จำนำ ขายฝาก
+                        หรือทำสัญญาอื่นใดที่ทำให้ทรัพย์สินดังกล่าวมิใช่ทรัพย์สินที่เป็น
+                        <br> กรรมสิทธิ์ไม่ว่ากรณีใด ๆ<br>
+                        <br>
+                        <span>สัญญาฉบับนี้ทำขึ้นสองฉบับ ทั้งสองฉบับมีข้อความตรงกัน "ผู้ซื้อ" และ
+                            "ผู้ขาย"ได้อ่านเข้าใจโดยตลอด</span><br> จึงลงนามไว้เป็นหลักฐานต่อไปนี้
+                </p>
+            </div>
+            <div class="fixed-right" style="margin-top:20%">
+                <p>ลงชื่อ ............................................ ( ผู้ซื้อ )
+                    <p>
+                        <p>( ............................................................ )
+                            <p>
+                                <p>ลงชื่อ ............................................ ( ผู้ขาย )
+                                    <p>
+                                        <p>( ............................................................ )
+                                            <p>
+                                                <p>ลงชื่อ ............................................ ( พยาน )
+                                                    <p>
+                                                        <p>( ............................................................
+                                                            )
+                                                            <p>
+            </div>
+        </div>
+    </center>
+
+</body>
+
+</html>
+<%- include('../layouts/javascript'); -%>

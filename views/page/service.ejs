@@ -1,0 +1,233 @@
+<%- include('../layouts/header', {title: 'รายงานการบริการ'}); -%>
+<%- include('../layouts/css'); -%>
+<%- include('../layouts/endheader'); -%>
+<%- include('../layouts/sidebar',{active:'service'}); -%>
+<%- include('../layouts/topbar'); -%>
+<%- include('../layouts/banner'); -%>
+
+
+
+<!-- contenr -->
+
+<div class="content">
+
+    <div class="title">
+        <span><i class="fas fa-home "></i> รายงานการบริการ</span>
+        <div class="line"></div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="form-group col">
+            <input type="email" class="form-control" id="myInput" onkeyup="search()" maxlength="30"
+                placeholder="ค้นหาชื่อลูกค้า หรือ เลขที่ทำรายการ">
+        </div>
+
+        <div class="form-group col-2">
+            <select id="selectInput" class="form-control service"  onchange="sort()" >
+                <option value="">ทั้งหมด</option>
+                <option value="การซื้อ">การซื้อ</option>
+                <option value="การขาย">การขาย</option>
+                <option value="การซ่อม">การซ่อม</option>
+                <option value="การต่อทะเบียน">การต่อทะเบียน</option>
+            </select>
+
+        </div>
+        <!-- <div class="form-group col-1">
+                <button onclick="sort()" >Submit</button>
+        </div> -->
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-sm" id="myTable">
+            <thead class="thead-light">
+                <tr>
+                    <th>ลำดับ</th>
+                    <th>วันที่</th>
+                    <th>เลขที่ทำรายการ</th>
+                    <th>ชื่อลูกค้า</th>
+                    <th>ยอดรวม</th>
+                    <th>ประเภท</th>
+                    <th>ตัวเลือก</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <% for(var i=0 ; i<person.length ; i++) { %>
+                <tr>
+                    <td class="text-center">
+                        <%= i+1 %>
+                    </td>
+                    <td class="text-center">
+                        <%= person[i].date.getDate() %>/<%= person[i].date.getMonth() %>/<%= person[i].date.getFullYear() %>
+                    </td>
+                    <td class="text-center">
+                        <%= person[i]._id %>
+                    </td>
+                    <td class="text-center">
+                        <%=  person[i].customer.firstname %>
+                        <%=  person[i].customer.lastname %>
+                    </td>
+                    <td class="text-center">
+                        <%= person[i].total.toLocaleString() %>
+                    </td>
+
+                    <% if(person[i].type == "การต่อทะเบียน") { %>
+                    <td class="text-center">
+                        <span class="badge badge-primary">การต่อทะเบียน</span>
+                    </td>
+
+                    <td class="text-right">
+                        <a href="/renew/sucess/<%= person[i]._id %>"><button class="btn-show"><span><i
+                                        class="fas fa-eye"></i></span></button></a>
+                        <a href="/renew/del/<%= person[i]._id %>"><button class="btn-remove"><span><i
+                                        class="fas fa-trash-alt"></i></span></button></a>
+                    </td>
+
+
+                    <% }else if(person[i].type == "การขาย"){ %>
+                    <td class="text-center">
+                        <span class="badge badge-warning">การขาย</span>
+                    </td>
+
+                    <td class="text-right">
+                        <a href="/sell/sucess/<%= person[i]._id %>"><button class="btn-show"><span><i
+                                        class="fas fa-eye"></i></span></button></a>
+                        <a href="/sell/del/<%= person[i]._id %>"><button class="btn-remove"><span><i
+                                        class="fas fa-trash-alt"></i></span></button></a>
+                    </td>
+
+
+                    <% }else if(person[i].type == "การซื้อ"){ %>
+                    <td class="text-center">
+                        <span class="badge badge-success">การซื้อ</span>
+                    </td>
+
+                    <td class="text-right">
+                        <a href="/buy/sucess/<%= person[i]._id %>"><button class="btn-show"><span><i
+                                        class="fas fa-eye"></i></span></button></a>
+                        <a href="/buy/del/<%= person[i]._id %>"><button class="btn-remove"><span><i
+                                        class="fas fa-trash-alt"></i></span></button></a>
+                    </td>
+
+
+                    <% }else if(person[i].type == "การซ่อม"){ %>
+                    <td class="text-center">
+                        <span class="badge badge-info">การซ่อม</span>
+                    </td>
+
+                    <td class="text-right">
+                        <a href="/repair/sucess/<%= person[i]._id %>"><button class="btn-show"><span><i
+                                        class="fas fa-eye"></i></span></button></a>
+                        <a href="/repair/del/<%= person[i]._id %>"><button class="btn-remove"><span><i
+                                        class="fas fa-trash-alt"></i></span></button></a>
+
+                    </td>
+
+                    <% } %>
+                </tr>
+                <% } %>
+
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<!-- contenr -->
+
+<script>
+    let data = JSON.parse('<%- JSON.stringify(person) %>');
+    // console.log(data);
+
+
+    function cancle() {
+        confirm("ต้องการยกเลิกใบเสร็จ/ใบกำกับภาษี");
+    }
+
+    function search() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2];
+            td2 = tr[i].getElementsByTagName("td")[3];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                txtValue2 = td2.textContent || td2.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+
+
+
+    function sort() {
+        console.log("SORT");
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("selectInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+
+
+        input = document.getElementById("selectInput");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[5];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    function reset() {
+        console.log("RESET");
+        
+        // var input, filter, table, tr, td, i, txtValue;
+        // input = ""
+        // filter = input
+        // table = document.getElementById("myTable");
+        // tr = table.getElementsByTagName("tr");
+
+
+        // input = document.getElementById("selectInput");
+        // tr = table.getElementsByTagName("tr");
+        // for (i = 0; i < tr.length; i++) {
+        //     td = tr[i].getElementsByTagName("td")[5];
+        //     if (td) {
+        //         txtValue = td.textContent || td.innerText;
+        //         if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        //             tr[i].style.display = "";
+        //         } else {
+        //             tr[i].style.display = "none";
+        //         }
+        //     }
+        // }
+    }
+</script>
+
+
+
+
+
+</body>
+
+</html>
+<%- include('../layouts/javascript'); -%>

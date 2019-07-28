@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ใบเสร็จ</title>
+    <style>
+        .fixed-a4 {
+            border: 1px solid black;
+            width: 768px;
+            height: 1024px;
+        }
+
+        .fixed-left {
+            text-align: left;
+            margin-left: 5%;
+            margin-top: 5%;
+        }
+
+        .fixed-right {
+            text-align: right;
+            margin-right: 5%;
+            margin-top: 5%;
+        }
+
+        .font-left {
+            text-align: left;
+            margin-left: 5%;
+
+        }
+
+        .font-right {
+            text-align: right;
+            margin-right: 5%;
+
+        }
+
+        tr {
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <div class="fixed-a4">
+            <div style="margin-top:5%">
+                <img src="/images/logo.png" width="100px;" height="auto">
+            </div>
+            <h4 class="fixed-left">บริษัทโชคทวีออโต้เซลล์จำกัด</h4>
+            <h4 class="fixed-right" style="margin-top:-43px">ใบเสร็จ</h4>
+            <div class="fixed-left" style="margin-top:0%">
+                <p>2571/1 ถ.รามคำแหง แขวงหัวหมาก เขตบางกะปิ กรุงเทพฯ 10240</p>
+                <p>โทร. 027395100 โทรสาร 027395910</p>
+            </div>
+            <div style="margin-top:5%">
+                <p class="font-left"><b>เลขที่ใบเสร็จ : </b><span><%= result._id %></span></p>
+                <p class="font-right" style="margin-top:-40px"><b>วันที่ :
+                    </b><span><%= result.date.getDate() %>/<%= result.date.getMonth()+1 %>/<%= result.date.getFullYear() %></span>
+                </p>
+                <p class="font-left"><b>ชื่อลูกค้า : </b><span><%= result.order.customer.firstname %>
+                        <%= result.order.customer.lastname %></span></p>
+                <p class="font-right" style="margin-top:-40px"><b>เบอร์โทรศัพท์ :
+                    </b><span><%= result.order.customer.tel %></span></p>
+                <p class="font-left"><b>ที่อยู่ : </b><span><%= result.order.customer.address.addressNumber %>
+                        <%= result.order.customer.address.district %> <%= result.order.customer.address.province %>
+                        <%= result.order.customer.address.street %> <%= result.order.customer.address.subdistrict %>
+                        <%= result.order.customer.address.zipCode %></span></p>
+                <hr noshade width=90% color=black>
+                <table style="width:90%">
+
+                    <tr>
+                        <th style="width:10%">ลำดับที่</th>
+                        <th style="width:45%">รายการ</th>
+                        <th style="width:15%">จำนวน</th>
+                        <th style="width:15%">ราคาต่อหน่วย</th>
+                        <th style="width:15%">จำนวนเงิน</th>
+                    </tr>
+                </table>
+                <hr noshade width=90% color=black>
+                <table style="width:90%;">
+                    <% if(result.type == "การต่อทะเบียน") { %>
+                    <% for(var i = 0; i < result.order.renew.length ; i++ ) { %>
+                    <tr>
+                        <td style="width:10%"><%= i+1 %></td>
+                        <td style="width:45%"><%= result.order.renew[i][0] %> <%= result.order.renew[0][1] %>
+                            <%= result.order.renew[0][2] %></td>
+                        <td style="width:15%">1</td>
+                        <td style="width:15%">50</td>
+                        <td style="width:15%">50</td>
+                    </tr>
+                    <% } %>
+                    <% } else if (result.type == "การขาย") { %>
+                    <tr>
+                        <td style="width:10%">1</td>
+                        <td style="width:45%"><%= result.order.car.brand %> </td>
+                        <td style="width:15%">1</td>
+                        <td style="width:15%"><%= result.order.car.price %></td>
+                        <td style="width:15%"><%= result.order.car.price %></td>
+                    </tr>
+                    <% }  else if(result.type == "การซื้อ")  { %>
+                 
+                        <tr>
+                            <td style="width:10%">1</td>
+                            <td style="width:45%"><%= result.order.car.brand %> </td>
+                            <td style="width:15%">1</td>
+                            <td style="width:15%"><%= result.order.car.cost %></td>
+                            <td style="width:15%"><%= result.order.car.cost %></td>
+                        </tr>
+                    <% } else { %>
+                        <% for(var i = 0; i < result.order.itemOrder.length ; i++ ) { %>
+                            <tr>
+                                <td style="width:10%"><%= i+1 %></td>
+                                <td style="width:45%"><%= result.order.itemOrder[i].item.name %></td>
+                                <td style="width:15%"><%= result.order.itemOrder[i].quantity %></td>
+                                <td style="width:15%"><%= result.order.itemOrder[i].price %></td>
+                                <td style="width:15%"><%= result.order.itemOrder[i].quantity*result.order.itemOrder[i].price %></td>
+                            </tr>
+                        <% } %>
+                    <% } %>
+                </table>
+                <br>
+                <hr noshade width=90% color=black>
+                <div style="margin-top:0%">
+                    <h5 class="font-right">รวม <span><%= result.order.total %></span> บาท</h5>
+                </div>
+                <div style="margin-top:10%">
+                    <h5 class="font-right">ผู้รับเงิน___________________________</h5>
+                </div>
+                <div>
+                        
+
+                        <script>
+                        function myFunction() {
+                            document.getElementById("bt-print").style.display = "none";
+                          window.print();
+                          
+                        }
+                        </script>
+                </div>
+    </center>
+
+    <button onclick="myFunction()" id="bt-print" style="margin-left:90vw;">Print this page</button>
+
+</body>
+
+</html>
+<!-- <%- include('../layouts/javascript'); -%> -->
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script>
+    let data = JSON.parse('<%- JSON.stringify(result) %>');
+    console.log(data);
+
+</script>

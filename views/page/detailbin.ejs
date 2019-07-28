@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="/images/favicon.ico" />
+    <!-- icon Fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <!-- icon Fontawesome -->
+
+    <!-- CSS Global -->
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/topbar.css">
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    <link rel="stylesheet" type="text/css" href="/css/content.css">
+    <!-- CSS Global -->
+    <title>ออกใบเสร็จ/ใบกำกับภาษี</title>
+</head>
+
+<body>
+
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">
+            <img src="/images/logo.svg">
+            <div class="title">โชคทวีออโต้เซลล์</div>
+        </div>
+
+        <div class="menu">
+            <ul>
+                <a href="home.html">
+                    <li><i class="fas fa-home "></i>หน้าแรก</li>
+                </a>
+                <a href="customer.html">
+                    <li><i class="fas fa-user"></i>จัดการลูกค้า</li>
+                </a>
+                <a href="service.html">
+                    <li><i class="fas fa-clipboard-list "></i>รายงานการบริการ</li>
+                </a>
+                <a href="reportBill.html">
+                    <li class="active"><i class="fas fa-file-invoice-dollar "></i>ออกใบเสร็จ/ใบกำกับภาษี</li>
+                </a>
+                <a href="reportRenew.html">
+                    <li><i class="fas fa-file-invoice "></i>ใบรับรถ/ใบรับทะเบียน</li>
+                </a>
+                <a href="reportPromise.html">
+                    <li><i class="fas fa-file-signature "></i>สัญญาซื้อ - ขาย</li>
+                </a>
+
+                <a href="user.html">
+                    <li><i class="fas fa-user-shield"></i>จัดการผู้ใช้งาน</li>
+                </a>
+            </ul>
+        </div>
+    </div>
+    <!-- Sidebar -->
+
+
+
+    <!-- Topbar -->
+    <div class="topbar">
+        <span class="user">Supisara Prasittinawa</span>
+        <a href="login.html">
+            <button class="btn-logout"><span><i class="fas fa-sign-out-alt"></i> ออกจากระบบ</span></button>
+        </a>
+    </div>
+    <!-- Topbar -->
+
+
+
+
+    <!-- contenr -->
+
+    <div class="content">
+        <div class="title margin-top-30">
+            <img src="/images/renewel.svg" width="200px">
+            <span>ใบเสร็จรับเงิน</span>
+            <div class="line"></div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col"></div>
+
+            <div class="form-group col">
+                <label>วันที่ออกเอกสาร</label>
+                <input type="date" class="form-control" value="" name="dateofbirth" id="dateofbirth">
+            </div>
+            <div class="form-group col">
+                <label>ประเภทเอกสาร</label>
+                <label for="inputEmail4">จังหวัด</label>
+                <select class="form-control">
+                    <option>ใบเสร็จรับเงิน</option>
+                    <option>ใบเสร็จรับเงิน/ใบกำกับภาษี</option>
+
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-7">
+                ชื่อลูกค้า<span style="color:red">*</span>
+                <select class="form-control">
+                    <option></option>
+                    <option>ประยุทธ์ ยุบสปา</option>
+                    <option>ประวัทย์ นาฬิกาตาย</option>
+                    <option>ศรีวรีห์ อนุญาติธรรม</option>
+                </select>
+            </div>
+            <div class="form-group col">
+                <label>เลขประจำตัวผู้เลสียภาษี</label>
+                <input type="text" class="form-control" name="dateofbirth" id="dateofbirth">
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="form-group col-7">
+                <label>ที่อยู่</label>
+                <input type="text" class="form-control" />
+            </div>
+            <div class="form-group col">
+                <label>สำนักงานใหญ่/สาขา</label>
+                <input type="text" class="form-control" />
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="form-group col"></div>
+            <div class="form-group col-2">
+                <button class="btn-light-green  btn-full" onclick="addDetail()"><span><i class="fas fa-plus-circle"></i>
+                        เพิ่มรายการ</span></button>
+            </div>
+            <div class="form-group col-2">
+                <button class="btn-green  btn-full"><span><i class="fas fa-plus-circle"></i> เพิ่มบริการ</span></button>
+            </div>
+        </div>
+
+
+
+        <div class="table-responsive">
+            <table class="table table-sm" id="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th></th>
+                        <th>รายการ</th>
+                        <th>จำนวน</th>
+                        <th>ราคาต่อหน่วย</th>
+                        <th>ยอดชำระ (บาท)</th>
+
+                    </tr>
+                </thead>
+                <tbody id="add">
+                    <tr name="pat">
+                        <td class="text-center"><button onclick="deleteRow(this)" class="btn-disble"><span><i
+                                        class="fas fa-times"></i></span></button></td>
+                        <td class="text-center"> <input type="text" id="lname" name="lastname" class="form-control"
+                                placeholder=""></td>
+                        <td class="text-center"> <input type="number" id="lname" name="lastname" class="form-control"
+                                placeholder="0"></td>
+                        <td class="text-center"> <input type="number" id="lname" name="lastname" class="form-control"
+                                placeholder="0"></td>
+                        <td class="text-right">750.00</td>
+
+                    </tr>
+
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4" class="text-right">
+                            จำนวนเงินไม่รวมภาษี
+                        </td>
+                        <td class="text-right">
+                            750.00
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="text-right">
+                            ส่วนลด
+                        </td>
+                        <td class="text-right">
+                            <input type="number" class="form-control" placeholder="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="text-right">
+                            ภาษีมูลค่าเพิ่ม 7%
+                        </td>
+                        <td class="text-right">
+                            55.62
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" class="text-right">
+                            รวมทั้งสิ้น
+                        </td>
+                        <td class="text-right">
+                            750.00
+                        </td>
+                    </tr>
+                </tfoot>
+
+
+                </tbody>
+            </table>
+        </div>
+
+
+
+        <div class="row">
+            <div class="form-group col">
+
+            </div>
+            <div class="form-group col">
+
+            </div>
+            <div class="form-group col-4">
+                <div style="text-align: right">
+                    <button class="btn-green" style="width:100%;"><span>บันทึก</span></button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+    <!-- contenr -->
+
+
+    <script>
+        // var modal = document.getElementById('myModal');
+        // var btn = document.getElementById("myBtn");
+        // var span = document.getElementsByClassName("close")[0];
+        // btn.onclick = function () {
+        //     modal.style.display = "block";
+        // }
+        // span.onclick = function () {
+        //     modal.style.display = "none";
+        // }
+        // window.onclick = function (event) {
+        //     if (event.target == modal) {
+        //         modal.style.display = "none";
+        //     }
+        // }
+
+        function addDetail() {
+
+            let tr = '<tr>' +
+                '<td class="text-center"><button class="btn-disble"  onclick="deleteRow(this)"><span><i class="fas fa-times"></i></span></button></td>' +
+                '<td class="text-center"> <input type="text" id="lname"  name="lastname"  class="form-control" placeholder=""></td>' +
+                '<td class="text-center"> <input type="number" id="lname" name="lastname"  class="form-control" placeholder="0">' +
+                '</td>' +
+                '<td class="text-center"> <input type="number" id="lname" name="lastname"  class="form-control"  placeholder="0"></td>' +
+                '<td class="text-right">0</td>' +
+
+                '</tr>';
+
+
+            let table = document.getElementById('add');
+
+            table.innerHTML += tr;
+        }
+
+
+
+
+        function deleteRow(r) {
+            var i = r.parentNode.parentNode.rowIndex;
+
+            document.getElementById("table").deleteRow(i);
+        }
+    </script>
+
+
+</body>
+
+</html>
+<%- include('../layouts/javascript'); -%>

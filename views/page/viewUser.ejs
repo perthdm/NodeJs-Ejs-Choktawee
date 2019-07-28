@@ -1,0 +1,131 @@
+<%- include('../layouts/header', {title: 'ข้อมูลพนักงาน'}); -%>
+<%- include('../layouts/css'); -%>
+<%- include('../layouts/endheader'); -%>
+<%- include('../layouts/sidebar',{active:'user'}); -%>
+<%- include('../layouts/topbar'); -%>
+
+
+<!-- contenr -->
+
+<div class="content">
+    <div class="title margin-top-30">
+        <span><i class="fas fa-user-shield "></i> ข้อมูลพนักงาน</span>
+        <div class="line"></div>
+    </div>
+
+    <div style="display: flex;justify-content: center;">
+        <div style="max-width: 600px;width: 100%;">
+            <label class="header">บัญชีผู้ใช้</label>
+
+            <div style="padding-left: 20px;padding-top: 20px;">
+                <div class="form-group">
+                    <label for="inputAddress">ชื่อผู้ใช้งาน</label>
+                    <input type="text" class="form-control" readonly value="<%= result.username %>" name="username">
+                </div>
+                <div class="form-group">
+                    <label for="inputAddress">E-mail</label>
+                    <input type="email" class="form-control" readonly value="<%= result.email %>" name="email">
+                </div>
+
+            </div>
+
+
+            <label class="header">ข้อมูลผู้ใช้</label>
+            <div style="padding-left: 20px;padding-top: 20px;">
+                <div class="form-group">
+                    <label for="inputEmail4">เลขบัตรประชาชน</label>
+                    <input type="text" class="form-control" readonly name="idCard" value="<%= result.idCard %>"
+                        required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="inputEmail4">ชื่อ</label>
+                        <input type="text" class="form-control" value="<%= result.firstname %>" readonly
+                            name="firstname" required>
+                    </div>
+                    <div class="form-group col">
+                        <label for="inputEmail4">นามสกุล</label>
+                        <input type="text" class="form-control" readonly value="<%= result.lastname %>" name="lastname"
+                            required>
+                    </div>
+
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="inputAddress">เบอร์โทร</label>
+                    <input type="text" class="form-control" readonly value="<%= result.tel %>" name="tel" id="tel">
+
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="inputEmail4">ที่อยู่</label>
+                        <input type="text" class="form-control" readonly value="<%= result.address.addressNumber %>"
+                            name="address" required>
+                    </div>
+                    <div class="form-group col">
+                        <label for="inputEmail4">ถนน</label>
+                        <input type="text" class="form-control" readonly value="<%= result.address.street %>"
+                            name="street" required>
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="inputEmail4">ตำบล/เขต</label>
+                        <input type="text" class="form-control" readonly value="<%= result.address.subdistrict %>"
+                            name="subdistrict" required>
+                    </div>
+
+                    <div class="form-group col">
+                        <label for="inputEmail4">อำเภอ</label>
+                        <input type="text" class="form-control" readonly value="<%= result.address.district %>"
+                            name="district" required>
+                    </div>
+                </div>
+                <div class="form-row">
+
+                    <div class="form-group col">
+                        <label for="inputEmail4">จังหวัด</label>
+                        <input type="text" class="form-control" readonly value="<%= result.address.province %>"
+                            name="province" required>
+                    </div>
+                    <div class="form-group col">
+                        <label for="inputEmail4">รหัสไปรษณีย์</label>
+                        <input type="text" class="form-control" readonly value="<%= result.address.zipCode %>"
+                            name="zipCode" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="inputEmail4">ตำแหน่งงาน</label>
+                        <input type="text" class="form-control" readonly value="<%= result.position %>" name="position"
+                            required>
+                    </div>
+
+                    <div class="form-group col">
+                        <label for="inputEmail4">เงินเดือน</label>
+                        <input type="text" class="form-control" readonly value="<%= result.salary.toLocaleString() %>"
+                            name="salary" required>
+                    </div>
+                </div>
+                <a href="/user"><button class="btn-green btn-full"><span><i class="fas fa-arrow-circle-left"></i>
+                            ย้อนกลับ</span></button></a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- contenr -->
+
+
+
+
+</body>
+
+</html>
+<%- include('../layouts/javascript'); -%>

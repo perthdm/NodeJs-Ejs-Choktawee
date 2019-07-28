@@ -1,0 +1,124 @@
+<%- include('../layouts/header', {title: 'สัญญาซื้อ-ขาย'}); -%>
+<%- include('../layouts/css'); -%>
+<%- include('../layouts/endheader'); -%>
+<%- include('../layouts/sidebar',{active:'reportPromise'}); -%>
+<%- include('../layouts/topbar'); -%>
+<%- include('../layouts/banner'); -%>
+
+
+
+
+
+
+<!-- contenr -->
+
+<div class="content">
+
+    <div class="title">
+        <span><i class="fas fa-home "></i> สัญญาซื้อ - ขาย</span>
+        <div class="line"></div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="form-group col">
+            <input type="text" class="form-control" placeholder="ค้นหารหัส/ชื่อลูกค้า" id="myInput" onkeyup="search()"
+                maxlength="30">
+        </div>
+        <!-- <div class="form-group col-2">
+            <button class="btn-light-green btn-full"><span><i class="fas fa-search"></i> ค้นหา</span></button>
+        </div> -->
+
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-sm" id="myTable">
+            <thead class="thead-light">
+                <tr>
+                    <th>ลำดับ</th>
+                    <th>วันที่ทำสัญญา</th>
+                    <th>เลขที่เอกสาร</th>
+                    <th>ชื่อลูกค้า</th>
+                    <th>ประเภท</th>
+                    <th>ตัวเลือก</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                <% for(var i=0 ; i<result.length ; i++) { %>
+                <tr>
+                    <td class="text-center">
+                        <%= i+1 %>
+                    </td>
+                    <td class="text-center">
+                        <%= result[i].date.getDate() %>/
+                        <%= result[i].date.getMonth() %>/
+                        <%= result[i].date.getFullYear() %>
+                    </td>
+                    <td class="text-center">
+                        <%= result[i]._id %>
+                    </td>
+                    <td>
+                        <%= result[i].order.customer.firstname %>
+                        <%= result[i].order.customer.lastname %>
+                    </td>
+
+                    <td class="text-center">
+                        <% if(result[i].type == "การซื้อ") { %>
+                        <span class="badge badge-success">การซื้อ</span>
+                        <% } else { %>
+                        <span class="badge badge-warning">การขาย</span>
+                        <% } %>
+                    </td>
+                    <td class="text-center">
+                        <button onclick="view('<%= result[i]._id %>')" class="btn-show"><span><i
+                                    class="fas fa-eye"></i></span></button>
+                    </td>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<!-- contenr -->
+
+
+
+
+
+
+
+</body>
+
+</html>
+<%- include('../layouts/javascript'); -%>
+<script>
+    function view(_id) {
+        window.location = "/report/showpromise/" + _id;
+    }
+
+
+
+    function search() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[3];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>

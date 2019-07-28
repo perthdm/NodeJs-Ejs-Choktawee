@@ -1,0 +1,149 @@
+<%- include('../layouts/header', {title: 'ต่อทะเบียน : ข้อมูลลูกค้า'}); -%>
+<%- include('../layouts/css'); -%>
+<%- include('../layouts/endheader'); -%>
+<%- include('../layouts/sidebar',{active:'home'}); -%>
+<%- include('../layouts/topbar'); -%>
+
+
+
+<!-- stap4 -->
+
+<div class="content" id="step4" >
+    <div class="title margin-top-30">
+        <img src="/images/renewel.svg" width="200px">
+        <span> ต่อทะเบียน</span>
+        <div class="line"></div>
+    </div>
+    <center>
+        <div class="stepwizard">
+            <div class="stepwizard-row">
+                <div class="stepwizard-step">
+                    <button type="button" class="btn-circle btn-green-step">1</button>
+                    <p class="color-green">ข้อมูลลูกค้า</p>
+                </div>
+                <div class="stepwizard-step">
+                    <button type="button" class="btn-circle btn-green-step">2</button>
+                    <p class="color-green">ข้อมูลทะเบียน</p>
+                </div>
+                <div class="stepwizard-step">
+                    <button type="button" class="btn-circle btn-green-step">3</button>
+                    <p class="color-green">สรุปการทำรายการ</p>
+                </div>
+                <div class="stepwizard-step">
+                    <button type="button" class="btn-circle btn-green-step">4</button>
+                    <p class="color-green">การทำรายการสำเร็จ</p>
+                </div>
+            </div>
+        </div>
+    </center>
+
+    <div class="row">
+        <div class="form-group col text-green">
+            ข้อมูลลูกค้า
+        </div>
+    </div>
+    <div class="row">
+            <div class="col">
+                    <div style="padding-left: 30px">ชื่อ-นามสกุล : <%= data.customer.firstname %> <%= data.customer.lastname %>
+                        <br> เลขประจำตัวประชาชน/เลขที่ผู้เสียภาษี : <%= data.customer.idCard %>
+                        <br> ที่อยู่ : <%= data.customer.address.addressNumber %> <%= data.customer.address.street %> <%= data.customer.address.district %> <%= data.customer.address.province %> <%= data.customer.address.zipCode %>
+                    </div>
+                </div>
+        
+                <div class="col">
+                    <div style="padding-right: 30px">
+                        E-mail : <%= data.customer.email %>
+                        <br> เบอร์โทรศัพท์ : <%= data.customer.tel %>
+                    </div>
+                </div>
+            </div>
+            <br>
+        
+            <div class="row">
+                <div class="form-group col text-green">
+                    ข้อมูลทะเบียน
+                </div>
+           
+        
+           
+                <table class="table table-sm" id="table-con">
+                    <thead class="thead-light">
+                        <tr>
+        
+                            <th>ยี่ห้อ</th>
+                            <th>รุ่น</th>
+                            <th>เลขทะเบียน</th>
+                            <th>หมายเลขตัวถัง</th>
+                            <th>หมายเลขเครื่องยนต์</th>
+                        </tr>
+                    </thead>
+                    <tbody id="show">
+                            <% for(let i = 0 ; i < data.renew.length ; i++) { %>
+                                <tr>
+                                    <td class="text-center">
+                                        <%= data.renew[i][0] %>
+                                    </td>
+                                    <td class="text-center">
+                                            <%= data.renew[i][1] %>
+                                    </td>
+                                    <td class="text-center">
+                                            <%= data.renew[i][2] %>
+                                    </td>
+                                    <td class="text-center">
+                                            <%= data.renew[i][3] %>
+                                    </td>
+                                    <td class="text-center">
+                                            <%= data.renew[i][4] %>
+                                    </td>
+                                </tr>
+                                <% } %>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="3">
+                            </th>
+                            <th class="text-center">
+                                    รวมทั้งสิ้น
+                            </th>
+                            <th class="text-center" id="total">
+                                    <%= data.total %> บาท
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+    <div class="row margin-bt">
+        <div class="form-group col">
+
+        </div>
+
+        <div class="form-group col-8">
+
+        </div>
+        <div class="form-group col">
+                    <a href="/report/renewReceipt/<%= data._id %>" target="_blank"><button
+                        class="btn-green "><span>ออกใบรับทะเบียน</span></button><br></a>
+                <a href="/report/bill/<%= data._id %>"><button class="btn-green "><span>ออกใบเสร็จ</span></button></a><br>
+                <a href="/report/vat/<%= data._id %>" ><button class="btn-green "><span>ออกกำกับภาษี</span></button></a>
+        </div>
+    </div>
+
+
+
+</div>
+</div>
+
+
+
+<!-- contenr -->
+
+
+
+
+</body>
+
+</html>
+<%- include('../layouts/javascript'); -%>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+

@@ -1,0 +1,66 @@
+<%- include('../layouts/header', {title: 'Home'}); -%>
+<%- include('../layouts/css'); -%>
+<%- include('../layouts/endheader'); -%>
+<%- include('../layouts/sidebar',{active:'home'}); -%>
+<%- include('../layouts/topbar'); -%>
+<%- include('../layouts/banner'); -%>
+<!-- contenr -->
+
+<div class="content">
+
+    <div class="title">
+        <span><i class="fas fa-home "></i> การบริการ</span>
+        <div class="line"></div>
+    </div>
+
+    <div class="row">
+        <div class="col text-center">
+            <a href="/buy">
+                <button class="btn-home buycar">
+                    <img src="/images/buycar.svg">
+                    <p>ซื้อรถ</p>
+                </button>
+            </a>
+        </div>
+
+        <div class="col text-center">
+            <a href="/sell">
+                <button class="btn-home sellcar">
+                    <img src="/images/sellcar.svg">
+                    <p>ขายรถ</p>
+                </button>
+            </a>
+        </div>
+
+        <div class="col text-center">
+            <a href="/repair">
+                <button class="btn-home repair">
+                    <img src="/images/repair.svg">
+                    <p>ซ่อมรถ</p>
+                </button></a>
+        </div>
+
+        <div class="col text-center">
+            <a href="/renew">
+                <button class="btn-home renew">
+                    <img src="/images/renewel.svg">
+                    <p>ต่อทะเบียนรถ</p>
+                </button>
+            </a>
+        </div>
+    </div>
+
+    
+
+
+
+
+
+
+</div>
+
+<!-- contenr -->
+
+
+<%- include('../layouts/footer'); -%>
+<%- include('../layouts/javascript'); -%>

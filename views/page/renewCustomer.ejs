@@ -1,0 +1,546 @@
+<%- include('../layouts/header', {title: 'ต่อทะเบียน : ข้อมูลลูกค้า'}); -%>
+<%- include('../layouts/css'); -%>
+<%- include('../layouts/endheader'); -%>
+<%- include('../layouts/sidebar',{active:'home'}); -%>
+<%- include('../layouts/topbar'); -%>
+
+
+<!------------------------ STEP 1 -------------------------->
+<div class="content" id="step1">
+    <div class="title margin-top-30">
+        <img src="/images/renewel.svg" width="200px">
+        <span> ต่อทะเบียน : ข้อมูลลูกค้า</span>
+        <div class="line"></div>
+    </div>
+    <center>
+        <div class="stepwizard">
+            <div class="stepwizard-row">
+                <div class="stepwizard-step">
+                    <button type="button" class="btn-circle btn-green-step">1</button>
+                    <p class="color-green">ข้อมูลลูกค้า</p>
+                </div>
+                <div class="stepwizard-step">
+                    <button type="button" class="btn-circle" disabled="disabled">2</button>
+                    <p>ข้อมูลทะเบียน</p>
+                </div>
+                <div class="stepwizard-step">
+                    <button type="button" class="btn-circle" disabled="disabled">3</button>
+                    <p>สรุปการทำรายการ</p>
+                </div>
+                <div class="stepwizard-step">
+                    <button type="button" class="btn-circle" disabled="disabled">4</button>
+                    <p>การทำรายการสำเร็จ</p>
+                </div>
+            </div>
+        </div>
+    </center>
+
+    <div class="row">
+        <div class="form-group col">
+            <input type="text" list="brow" class="form-control" maxlength="30" id="inputSearch"
+                placeholder="ค้นหารหัส/ชื่อลูกค้า" onchange="showData()">
+            <datalist id="brow">
+                <% for(let i = 0 ; i < result.length ; i++) { %>
+                <option style="background-color:red !important;"
+                    value="<%= i+1 %> | <%= result[i].firstname %> <%= result[i].lastname %>"></option>
+                <% } %>
+            </datalist>
+        </div>
+
+        <div class="form-group col-2">
+            <a href="/customer/addCustomer">
+                <button class="btn-green btn-full"><span><i class="fas fa-plus-circle"></i>
+                        เพิ่มลูกค้า</span></button>
+            </a>
+        </div>
+    </div>
+
+
+    <div id="form-1">
+        <div class="row">
+            <div class="form-group col">
+                <label>ชื่อ</label>
+                <input readonly type="text" class="form-control" id="firstname" maxlength="30">
+                <input hidden type="text" class="form-control" name="_id" id="_id">
+            </div>
+            <div class="form-group col">
+                <label>นามสกุล</label>
+                <input readonly type="text" class="form-control" id="lastname" maxlength="30">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col">
+                <label>เลขประจำตัวประชาชน/เลขผู้เสียภาษี</label>
+                <input readonly type="text" class="form-control" id="idCard" maxlength="13">
+            </div>
+            <div class="form-group col">
+                <label>วัน เดือน ปีเกิด</label>
+                <input readonly type="date" class="form-control" id="birthday">
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col">
+                <label>E-mail</label>
+                <input readonly type="text" class="form-control" id="email" maxlength="30">
+            </div>
+            <div class="form-group col">
+                <label>เบอร์โทรศัพท์</label>
+                <input readonly type="text" class="form-control" id="tel" maxlength="10">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col">
+                <label>ที่อยู่</label>
+                <input readonly type="text" class="form-control" id="addressNumber" maxlength="30">
+            </div>
+            <div class="form-group col">
+                <label>ถนน</label>
+                <input readonly type="text" class="form-control" id="street" maxlength="30">
+            </div>
+            <div class="form-group col">
+                <label>ตำบล/เขต</label>
+                <input readonly type="text" class="form-control" id="subdistrict" maxlength="30">
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="form-group col">
+                <label>อำเภอ</label>
+                <input readonly type="text" class="form-control" id="district" maxlength="30">
+            </div>
+            <div class="form-group col">
+                <label>จังหวัด</label>
+                <input readonly type="text" class="form-control" id="province" maxlength="30">
+
+            </div>
+            <div class="form-group col">
+                <label>รหัสไปรษณีย์</label>
+                <input readonly type="text" class="form-control" id="zipCode" maxlength="5">
+            </div>
+        </div>
+
+        <div class="row margin-top-30">
+            <div class="col text-left"></div>
+            <div class="col text-right">
+                <a onclick="validateForm('form-1')" class="uk-button uk-button-default uk-button-medium"
+                    style=" width:140px; height: 40px; background-color:#8CC63F; color:white">
+                    ถัดไป
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!------------------------ STEP 1 -------------------------->
+
+
+
+<!------------------------ STEP 2 -------------------------->
+
+<div class="content" id="step2" style="display:none">
+    <div class="title margin-top-30">
+        <img src="/images/renewel.svg" width="200px">
+        <span> ต่อทะเบียน : ข้อมูลทะเบียน</span>
+        <div class="line"></div>
+    </div>
+
+    <center>
+        <div class="stepwizard">
+            <div class="stepwizard-row">
+                <div class="stepwizard-step">
+                    <button type="button" class="btn-circle btn-green-step">1</button>
+                    <p class="color-green">ข้อมูลลูกค้า</p>
+                </div>
+                <div class="stepwizard-step">
+                    <button type="button" class="btn-circle btn-green-step">2</button>
+                    <p class=" color-green">ข้อมูลทะเบียน</p>
+                </div>
+                <div class="stepwizard-step">
+                    <button type="button" class="btn-circle" disabled="disabled">3</button>
+                    <p>สรุปการทำรายการ</p>
+                </div>
+                <div class="stepwizard-step">
+                    <button type="button" class="btn-circle" disabled="disabled">4</button>
+                    <p>การทำรายการสำเร็จ</p>
+                </div>
+            </div>
+        </div>
+    </center>
+
+    <div class="row">
+        <div class="form-group col-6 text-green">
+            ข้อมูลทะเบียน
+        </div>
+        <div class="form-group col-2 text-green text-right">
+                    วันที่นัดรับ
+            </div>
+        <div class="form-group col-2 text-green">
+                <input type="date" name="date" value="" class="form-control" required id="date">
+            </div>
+        <div class="form-group col">
+            <button class="btn-green btn-full text-green" type="button" onclick="addDetail()"
+                style="background-color:#FFF; border: 1px solid #8CC63F; color: #8CC63F;">
+                <span><i class="fas fa-plus-circle"></i> ต่อทะเบียนเพิ่ม</span>
+            </button>
+        </div>
+        <hr>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-sm" id="table">
+            <thead class="thead-light">
+                <tr>
+                    <th></th>
+                    <th>ยี่ห้อ</th>
+                    <th>รุ่น</th>
+                    <th>เลขทะเบียน</th>
+                    <th>หมายเลขตัวถัง</th>
+                    <th>หมายเลขเครื่องยนต์</th>
+                </tr>
+            </thead>
+            <tbody id="add">
+                <tr>
+                    <td class="text-center"><button class="btn-disble" onclick="deleteRow(this)"><span><i
+                                    class="fas fa-times"></i></span></button></td>
+                    <td class="text-center">
+                        <input type="text" name="item0" class="form-control" required maxlength="30">
+                    </td>
+                    <td class="text-center">
+                        <input type="text" name="item0" class="form-control" required maxlength="30">
+                    </td>
+                    <td class="text-center">
+                        <input type="text" name="item0" class="form-control" required maxlength="30">
+                    </td>
+                    <td class="text-center">
+                        <input type="text" name="item0" class="form-control" required maxlength="30">
+                    </td>
+                    <td class="text-center">
+                        <input type="text" name="item0" class="form-control" required maxlength="30">
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="row margin-bt">
+        <div class="form-group col">
+            <a href="#" onclick="btBackStep2()">
+                <button class="btn-green btn-full"><span>
+                        กลับ</span></button>
+            </a>
+        </div>
+        <div class="form-group col-8">
+        </div>
+        <div class="form-group col">
+            <a href="#" onclick="validateForm('add')">
+                <button class="btn-green btn-full"><span>ถัดไป</span></button>
+            </a>
+        </div>
+    </div>
+</div>
+<!------------------------ STEP 2 -------------------------->
+
+
+<!------------------------ STEP 3 -------------------------->
+<div class="content" id="step3" style="display:none">
+    <div class="title margin-top-30">
+        <img src="/images/renewel.svg" width="200px">
+        <span> ต่อทะเบียน : ยืนยันการทำรายการ</span>
+        <div class="line"></div>
+    </div>
+    <center>
+        <div class="stepwizard">
+            <div class="stepwizard-row">
+                <div class="stepwizard-step">
+                    <button type="button" class="btn-circle btn-green-step">1</button>
+                    <p class="color-green">ข้อมูลลูกค้า</p>
+                </div>
+                <div class="stepwizard-step">
+                    <button type="button" class="btn-circle btn-green-step">2</button>
+                    <p class="color-green">ข้อมูลทะเบียน</p>
+                </div>
+                <div class="stepwizard-step">
+                    <button type="button" class="btn-circle btn-green-step">3</button>
+                    <p class="color-green">สรุปการทำรายการ</p>
+                </div>
+                <div class="stepwizard-step">
+                    <button type="button" class="btn-circle" disabled="disabled">4</button>
+                    <p>การทำรายการสำเร็จ</p>
+                </div>
+            </div>
+        </div>
+    </center>
+
+    <div class="row">
+        <div class="form-group col text-green">
+            ข้อมูลลูกค้า
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div style="padding-left: 30px">ชื่อ-นามสกุล : <span id="ConfirmFirstname"></span> <span
+                    id="ConfirmLastname"></span>
+                <br> เลขประจำตัวประชาชน/เลขที่ผู้เสียภาษี : <span id="ConfirmIdCard"></span>
+                <br> ที่อยู่ : <span id="ConfirmAddress"></span>
+
+            </div>
+        </div>
+
+        <div class="col">
+            <div style="padding-right: 30px">
+                E-mail : <span id="ConfirmEmail"></span>
+                <br> เบอร์โทรศัพท์ : <span id="ConfirmTel"></span>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div class="row">
+        <div class="form-group col text-green">
+            ข้อมูลทะเบียน :  วันที่รับ <span id="ConfirmDate"></span>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-sm" id="table-con">
+            <thead class="thead-light">
+                <tr>
+
+                    <th>ยี่ห้อ</th>
+                    <th>รุ่น</th>
+                    <th>เลขทะเบียน</th>
+                    <th>หมายเลขตัวถัง</th>
+                    <th>หมายเลขเครื่องยนต์</th>
+                </tr>
+            </thead>
+            <tbody id="show">
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3">
+                    </td>
+                    <td class="text-center">
+                            รวมทั้งสิ้น
+                    </td>
+                    <td class="text-center" id="total">
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+
+
+    <div class="row margin-bt">
+        <div class="form-group col">
+            <a href="#" onclick="btBackStep3()">
+                <button class="btn-green btn-full"><span>
+                        กลับ</span></button>
+            </a>
+        </div>
+        <div class="form-group col-8">
+
+        </div>
+        <div class="form-group col">
+            <button class="btn-green btn-full" onclick="addOrderRenew()" type="submit"  id="sent"><span>
+                    ยืนยันการทำรายการ</span>
+            </button>
+        </div>
+    </div>
+</div>
+<!------------------------ STEP 3 -------------------------->
+
+
+
+
+
+</body>
+
+</html>
+<%- include('../layouts/javascript'); -%>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+<script>
+    let data = JSON.parse('<%- JSON.stringify(result) %>');
+    var count = 0;
+    var dataInsert = {
+        customer: "",
+        item: [],
+        date : ""
+    }
+
+    function addOrderRenew() {
+        console.log("test");
+        $.post("/renew", { data: dataInsert },
+            function (result) {
+                console.log(result);
+                if (result) {
+                    window.location = "/renew/sucess/" + result._id
+                }
+        });
+    }
+
+
+
+    function showData() {
+        var str = document.getElementById("inputSearch").value;
+        var res = str.split(" | ");
+        var index = parseInt(res[0]) - 1;
+        var strDate = new Date(data[index].birthday);
+        var year = strDate.getFullYear();
+        var month = strDate.getMonth().toString().padStart(2, '0');
+        var date = (strDate.getDate()).toString().padStart(2, '0');
+        $('#birthday').val(year + '-' + month + '-' + date);
+        $("#_id").val(data[index]._id);
+        $("#firstname").val(data[index].firstname);
+        $("#lastname").val(data[index].lastname);
+        $("#idCard").val(data[index].idCard);
+        $("#email").val(data[index].email);
+        $("#tel").val(data[index].tel);
+        $("#addressNumber").val(data[index].address.addressNumber);
+        $("#street").val(data[index].address.street);
+        $("#subdistrict").val(data[index].address.subdistrict);
+        $("#district").val(data[index].address.district);
+        $("#province").val(data[index].address.province);
+        $("#zipCode").val(data[index].address.zipCode);
+        $("#inputSearch").val("");
+    }
+    function btNextStep1() {
+        document.getElementById("step1").style.display = "none";
+        document.getElementById("step2").style.display = "block";
+    }
+    function btNextStep2() {
+        var x = document.getElementById('add').getElementsByTagName('tr')
+        $('#total').text(x.length * 50 + " บาท")
+        var arratInput = []
+
+        // --------------- Add Row Table --------------- //
+        for (var i = 0; i < x.length; i++) {
+            var inputRow = x[i].getElementsByTagName("input");
+            var result = [];
+            for (let j = 0; j < inputRow.length; j++) {
+                result[j] = inputRow[j].value;
+            }
+            arratInput.push(result)
+        }
+
+        $('#show').text("");
+        for (let i = 0; i < arratInput.length; i++) {
+            $('#show').append('<tr>' +
+                '<td class="text-center">' + arratInput[i][0] + '</td>' +
+                '<td class="text-center">' + arratInput[i][1] + '</td>' +
+                '<td class="text-center">' + arratInput[i][2] + '</td>' +
+                '<td class="text-center">' + arratInput[i][3] + '</td>' +
+                '<td class="text-center">' + arratInput[i][4] + '</td>' +
+                '</tr>');
+        }
+        // --------------- Add Row Table --------------- //
+
+        // --------------- Set Json --------------- //
+        dataInsert.customer = $("#_id").val();
+        dataInsert.item = arratInput;
+        dataInsert.date = $('#date').val();
+        // --------------- Set Json --------------- //
+
+
+
+
+        /// --------------- Set Input --------------- //
+        $('#ConfirmFirstname').text($('#firstname').val());
+        $('#ConfirmDate').text($('#date').val());
+        $('#ConfirmLastname').text($('#lastname').val());
+        $('#ConfirmIdCard').text($('#idCard').val());
+        $('#ConfirmEmail').text($('#email').val());
+        $('#ConfirmTel').text($('#tel').val());
+        $('#ConfirmAddress').text("");
+        $('#ConfirmAddress').append($('#addressNumber').val() + ' ' +
+            $('#street').val() + ' ' +
+            $('#subdistrict').val() + ' ' +
+            $('#district').val() + ' ' +
+            $('#province').val() + ' ' +
+            $('#zipCode').val());
+        // --------------- Set Input --------------- //
+        document.getElementById("step2").style.display = "none";
+        document.getElementById("step3").style.display = "block";
+
+    }
+
+    function btBackStep2() {
+
+        document.getElementById("step2").style.display = "none";
+        document.getElementById("step1").style.display = "block";
+    }
+
+    function btNextStep3() {
+        document.getElementById("step3").style.display = "none";
+        document.getElementById("step4").style.display = "block";
+    }
+
+    function btBackStep3() {
+        document.getElementById("step3").style.display = "none";
+        document.getElementById("step2").style.display = "block";
+    }
+
+
+
+    function addDetail() {
+        count++;
+        $('#add').append('<tr>' +
+            '<td class="text-center">' + '<button class="btn-disble" onclick="deleteRow(this)"><span><i class="fas fa-times"></i></span></button>' + '</td>' +
+            '<td class="text-center">' + '<input type="text" name="item' + count + '"' + 'class="form-control " required maxlength="30">' + '</td>' +
+            '<td class="text-center">' + '<input type="text" name="item' + count + '"' + 'class="form-control " required maxlength="30">' + '</td>' +
+            '<td class="text-center">' + '<input type="text" name="item' + count + '"' + 'class="form-control " required maxlength="30">' + '</td>' +
+            '<td class="text-center">' + '<input type="text" name="item' + count + '"' + 'class="form-control " required maxlength="30">' + '</td>' +
+            '<td class="text-center">' + '<input type="text" name="item' + count + '"' + 'class="form-control " required maxlength="30">' + '</td>' +
+            '</tr>');
+    }
+
+    function deleteRow(r) {
+        var i = r.parentNode.parentNode.rowIndex;
+        document.getElementById("table").deleteRow(i);
+    }
+
+    function validateForm(form) {
+        var Form = form;
+        var x = document.getElementById(Form).getElementsByClassName("form-control");
+        var DateInput = document.getElementById('date').value
+        var statusInput = false;
+        console.log(DateInput == null || DateInput == '');
+        
+        for (var i = 0; i < x.length; i++) {
+            if (x[i].value == "") {
+                if (Form == 'form-1') {
+                    swal("", "กรุณาเลือกลูกค้า", "error")
+                } else {
+                    swal("", "กรุณากรอกข้อมูลให้ครบถ้วน", "error")
+                }
+                statusInput = false;
+                break;
+            } else {
+                statusInput = true;
+            }
+        }
+
+        if(Form == 'add' && (DateInput == null || DateInput == '') ){
+            swal("", "กรุณากรอกข้อมูลให้ครบถ้วน", "error")
+            statusInput = false;
+        }
+
+        
+
+        if (statusInput) {
+            if (Form == 'form-1') {
+                btNextStep1();
+            } else {
+                btNextStep2();
+            }
+        }
+    }
+</script>

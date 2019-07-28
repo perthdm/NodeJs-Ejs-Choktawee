@@ -1,0 +1,129 @@
+<%- include('../layouts/header', {title: 'รถ'}); -%>
+<%- include('../layouts/css'); -%>
+<%- include('../layouts/endheader'); -%>
+<%- include('../layouts/sidebar',{active:'stock'}); -%>
+<%- include('../layouts/topbar'); -%>
+<%- include('../layouts/banner'); -%>
+
+
+
+<!---------------------------------------- contenr ---------------------------------------->
+
+<div class="content">
+
+    <div class="title">
+        <span><i class="fas fa-home "></i> รถ</span>
+        <div class="line"></div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="form-group col">
+            <input type="email" class="form-control" id="myInput" onkeyup="search()" maxlength="30"
+                placeholder="ค้นหารถ">
+        </div>
+        <!-- <div class="form-group col-2">
+
+            <button class="btn-light-green btn-full"><span><i class="fas fa-search"></i> ค้นหา</span></button>
+
+        </div> -->
+        <div class="form-group col-2">
+
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-sm" id="myTable">
+            <thead class="thead-light">
+                <tr>
+                    <th>ลำดับ</th>
+                    <th>รายการ</th>
+                    <th>ราคาต้นทุน</th>
+                    <th>ราคาขาย</th>
+                    <th>สถานะ</th>
+                    <th>ตัวเลือก</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                <% if(result.length == 0 || result == null) { %>
+                <tr>
+                    <td colspan="6">ไม่มีรถในคลัง </td>
+                </tr>
+                <% } else { %>
+                <% for(var i = 0; i < result.length ; i++ ) { %>
+                <tr>
+                    <td>
+                        <%= i+1 %>
+                    </td>
+                    <td>
+                        <%= result[i].brand %> <%= result[i].model %>
+                    </td>
+                    <td>
+                        <%= result[i].cost %>
+
+                    </td>
+                    <td>
+                        <%= result[i].price %>
+                    </td>
+                    <td>
+                        <%= result[i].type %>
+
+                    </td>
+                    <td>
+                        <button onclick="del('<%= result[i]._id %>')" class="btn-remove"><span><i
+                                    class="fas fa-trash-alt"></i></span></button>
+                    </td>
+                </tr>
+                <% } %>
+                <% } %>
+
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+
+<!---------------------------------------- contenr ---------------------------------------->
+
+
+
+
+<%- include('../layouts/footer'); -%>
+<%- include('../layouts/javascript'); -%>
+
+
+<script>
+    function del(_id) {
+
+
+        window.location = "/stock/stockcar/delete/" + _id;
+    }
+
+
+
+    function search() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>

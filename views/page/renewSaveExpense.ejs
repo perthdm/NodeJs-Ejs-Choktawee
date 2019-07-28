@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="../assets/images/favicon.ico" />
+    <!-- icon Fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <!-- icon Fontawesome -->
+
+    <!-- CSS Global -->
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/topbar.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/sidebar.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/content.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/Rhiahoa.css">
+    <!-- CSS Global -->
+    <title>บันทึกค่าใช้จ่าย</title>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">
+            <img src="../assets/images/logo.svg">
+            <div class="title">โชคทวีออโต้เซลล์</div>
+        </div>
+
+        <div class="menu">
+            <ul>
+                <a href="home.html">
+                    <li><i class="fas fa-home "></i>หน้าแรก</li>
+                </a>
+                <a href="customer.html">
+                    <li><i class="fas fa-user"></i>จัดการลูกค้า</li>
+                </a>
+                <a href="service.html">
+                    <li class="active"><i class="fas fa-clipboard-list "></i>รายงานการบริการ</li>
+                </a>
+                <a href="reportBill.html">
+                    <li><i class="fas fa-file-invoice-dollar "></i>ออกใบเสร็จ/ใบกำกับภาษี</li>
+                </a>
+                <a href="reportRenew.html">
+                    <li><i class="fas fa-file-invoice "></i>ใบรับรถ/ใบรับทะเบียน</li>
+                </a>
+                <a href="reportPromise.html">
+                    <li><i class="fas fa-file-signature "></i>สัญญาซื้อ - ขาย</li>
+                </a>
+
+                <a href="user.html">
+                    <li><i class="fas fa-user-shield"></i>จัดการผู้ใช้งาน</li>
+                </a>
+            </ul>
+        </div>
+    </div>
+    <!-- Sidebar -->
+
+
+
+    <!-- Topbar -->
+    <div class="topbar">
+
+        <span class="user">Supisara Prasittinawa</span>
+        <a href="../page/login.html">
+            <button class="btn-logout"><span><i class="fas fa-sign-out-alt"></i> ออกจากระบบ</span></button>
+        </a>
+
+    </div>
+
+
+    <!-- Topbar -->
+
+
+    <!-- contenr -->
+
+    <div class="content">
+
+        <div class="title margin-top-30">
+            <span><i class="fas fa-users "></i> ต่อทะเบียน : บันทึกค่าใช้จ่าย</span>
+            <div class="line"></div>
+        </div>
+
+        <div class="row">
+
+            <div class="form-group col-10 text-green">
+                ข้อมูลทะเบียน
+            </div>
+            <div class="form-group col">
+
+            </div>
+        </div>
+
+        <div class="row" style="margin-bottom:20px;">
+            <div class="form-group col">
+
+            </div>
+            <div class="col-4">
+                <div><span>ชื่อ-สกุล :</span> <span class="text-lightgray">นายนพรัตน์ พันธ์ศร</span></div>
+                <div><span>เลขบัตรประจำตัว/เลขผู้เสียภาษี :</span> <span class="text-lightgray">1302587944456</span>
+                </div>
+                <div><span>ที่อยู่ :</span> <span class="text-lightgray">xxx xxxxx xxxxxxxx xxxxxx</span></div>
+            </div>
+            <div class="col-7">
+                <div><span>อีเมล :</span> <span class="text-lightgray">59160578@go.buu.ac.th</span></div>
+                <div><span>เบอร์โทรศัพท์ :</span> <span class="text-lightgray">088-992-3537</span></div>
+                <div class="text-white"><span>x</span></div>
+            </div>
+        </div>
+
+
+        <div class="row">
+
+            <div class="form-group col-10 text-green">
+                ข้อมูลทะเบียน
+            </div>
+            <div class="form-group col">
+
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-sm">
+                <thead class="thead-light">
+                    <tr>
+                        <th>ลำดับที่</th>
+                        <th style="min-width: 100px;">หมายเลขทะเบียน</th>
+                        <th style="width: 50px !important; ">ค่าภาษี</th>
+                        <th style="width: 50px !important; ">เงินเพิ่ม</th>
+                        <th style="width: 50px !important; ">ค่าต่อทะเบียน</th>
+                        <th style="min-width: 100px;">ยอดชำระ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center">1</td>
+                        <td class="text-center">กข5916 ตราด</td>
+                        <td class="text-center"> <input type="number" class="form-control" id="lname" name="lastname"
+                                placeholder="0">
+                        </td>
+                        <td class="text-center"> <input type="number" class="form-control" id="lname" name="lastname"
+                                placeholder="0">
+                        </td>
+                        <td class="text-center"> <input type="number" class="form-control" id="lname" name="lastname"
+                                placeholder="0">
+                        </td>
+                        <td class="text-center">750.50</td>
+                    </tr>
+
+                    <tr>
+                        <td class="text-center">1</td>
+                        <td class="text-center">2คง 2856 กรุงเทพมหานคร</td>
+                        <td class="text-center"> <input type="number" class="form-control" id="lname" name="lastname"
+                                placeholder="0">
+                        </td>
+                        <td class="text-center"> <input type="number" class="form-control" id="lname" name="lastname"
+                                placeholder="0">
+                        </td>
+                        <td class="text-center"> <input type="number" class="form-control" id="lname" name="lastname"
+                                placeholder="0">
+                        </td>
+                        <td class="text-center">750.50</td>
+                    </tr>
+
+
+                    <tr>
+
+                        <td colspan="5" class="text-right" style="color: #495057;
+                        font-weight: 500;">รวมทั้งสิ้น</td>
+                        <td class="text-center ">1501.00</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="row margin-bt">
+
+            <div class="form-group col">
+
+            </div>
+            <div class="form-group col-8">
+
+            </div>
+            <div class="form-group col">
+                <button class="btn-green btn-full"><span>
+                        บันถึกค่าใช้จ่าย</span></button>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <span style="font-size:25px;">ต่อทะเบียน : ข้อมูลรถ</span>
+            <hr>
+            <div>
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+            </div>
+
+            <div>
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+            </div>
+
+            <div>
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+            </div>
+
+            <div>
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+            </div>
+
+            <div class="form-group">
+                <button class="btn-green btn-full"><span>
+                        ยืนยัน</span></button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- contenr -->
+
+    <script>
+        var modal = document.getElementById('myModal');
+        var btn = document.getElementById("myBtn");
+        var span = document.getElementsByClassName("close")[0];
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>
+<%- include('../layouts/javascript'); -%>

@@ -1,0 +1,232 @@
+<%- include('../layouts/header', {title: 'ซ่อมรถ : ข้อมูลการซ่อมรถ'}); -%>
+<%- include('../layouts/css'); -%>
+<%- include('../layouts/endheader'); -%>
+<%- include('../layouts/sidebar',{active:'home'}); -%>
+<%- include('../layouts/topbar'); -%>
+
+<!-- contenr -->
+
+<div class="content">
+
+    <!-- title -->
+    <div class="title margin-top-30">
+        <img src="/images/repair.svg" width="200px">
+        <span> ซ่อมรถ : บันทึกการซ่อมรถ</span>
+        <div class="line"></div>
+    </div>
+    <!-- title -->
+
+    <div class="row">
+
+        <div class="form-group col-10 text-green">
+            ข้อมูลทะเบียน
+        </div>
+        <div class="form-group col">
+
+        </div>
+    </div>
+
+    <div class="row" style="margin-bottom:20px;">
+        <div class="form-group col">
+
+        </div>
+        <div class="col-4">
+            <div><span>ชื่อ-สกุล :</span> <span class="text-lightgray"><%= person.customer.firstname %>
+                    <%= person.customer.lastname %></span></div>
+            <div><span>เลขบัตรประจำตัว/เลขผู้เสียภาษี :</span> <span
+                    class="text-lightgray"><%= person.customer.idCard %></span></div>
+            <div><span>อีเมล :</span> <span class="text-lightgray"><%= person.customer.email %></span></div>
+            <div><span>เบอร์โทรศัพท์ :</span> <span class="text-lightgray"><%= person.customer.tel %></span></div>
+        </div>
+        <div class="col-7">
+            <div>
+                <p>บ้านเลขที่ : <%= person.customer.address.addressNumber %></p>
+                <p>ถนน : <%= person.customer.address.street %></p>
+                <p>ตำบล : <%= person.customer.address.subdistrict %></p>
+                <p>อำเภอ : <%= person.customer.address.district %> </p>
+                <p>จังหวัด : <%= person.customer.address.province %></p>
+                <p>รหัสไปรษณีย์ : <%= person.customer.address.zipcode %></p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+
+        <div class="form-group col-10 text-green">
+            ข้อมูลการซ่อมรถ
+        </div>
+        <div class="form-group col">
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col">
+
+        </div>
+        <div class="form-group col-8">
+
+        </div>
+        <div class="form-group col">
+            <button class="btn-light-green btn-full" uk-toggle="target: #modal-example"><span><i
+                        class="fas fa-plus-circle"></i>
+                    เพิ่มรายการ</span></button>
+        </div>
+    </div>
+
+    <form action="/repair/insertOrder/<%= person._id %>" method="post">
+        <div class="table-responsive">
+            <table class="table table-sm" id="myTable" name="myTable">
+                <thead class="thead-light">
+                    <tr>
+                        <th>เลือก</th>
+                        <th>รหัสสินค้า</th>
+                        <th>รายการ</th>
+                        <th>จำนวน</th>
+                        <th>ราคาต่อหน่วย</th>
+                        <th>ยอดชำระ (บาท)</th>
+                    </tr>
+                </thead>
+                <tbody id="myTable2">
+                    
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5" class="text-right" style="color: #495057;
+                                font-weight: 500;">รวมทั้งสิ้น</td>
+                        <td class="text-center" id="Money">0</td>
+
+                    </tr>
+                </tfoot>
+
+
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="row margin-bt">
+
+            <div class="form-group col">
+
+            </div>
+            <div class="form-group col-8">
+
+            </div>
+            <div class="form-group col">
+                <!-- <a href="/repair/step4"> -->
+                <button type="submit" class="btn-green btn-full"><span>บันทึกค่าใช้จ่าย</span></button>
+                <!-- </a> -->
+
+            </div>
+        </div>
+    </form>
+
+    <div id="modal-example" uk-modal>
+        <div class="uk-modal-dialog uk-modal-body">
+            <h2 class="uk-modal-title">รายการ</h2>
+            <h4>อะไหล่</h4>
+            <table class="table table-sm text-center" id="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th>ชื่อ</th>
+                        <th>ราคา</th>
+                        <th>จำนวน</th>
+                        <th>ตัวเลือก</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var i=0;i<item.length;i++) { %>
+                    <% if(item[i].doctype == "spares") { %>
+                    <tr>
+                        <td><%= item[i].name %></td>
+                        <td><%= item[i].price %></td>
+                        <td><%= item[i].quantity %></td>
+                        <td><button style="background-color: #8CC63F; color:#FFF; "
+                                class="uk-button uk-button-default uk-button-small"
+                                onclick="addDetail('<%= i %>')">เพิ่มรายการ</button>
+
+                    </tr>
+                    <% } %>
+                    <% } %>
+                </tbody>
+            </table>
+            <h4>ค่าบริการ</h4>
+            <table class="table table-sm text-center" id="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th>ชื่อ</th>
+                        <th colspan="2">ราคา</th>
+                        <th>ตัวเลือก</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var i=0;i<item.length;i++) { %>
+                    <% if(item[i].doctype == "wage") { %>
+                    <tr>
+                        <td colspan="2"><%= item[i].name %></td>
+                        <td ><%= item[i].price %></td>
+                        <td><button style="background-color: #8CC63F; color:#FFF; "
+                                class="uk-button uk-button-default uk-button-small"
+                                onclick="addDetail('<%= i %>')">เพิ่มรายการ</button>
+
+                    </tr>
+                    <% } %>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+</body>
+
+</html>
+<%- include('../layouts/javascript'); -%>
+
+<script src="/js/jquery-3.3.1.min.js"> </script>
+<script>
+    let data = JSON.parse('<%- JSON.stringify(item) %>');
+    var sumMoney = 0;
+    var sum = 0;
+    var tr = document.getElementById('myTable2').getElementsByClassName("inwza");;
+    console.log(data);
+
+    function addDetail(index) {
+
+        $('#myTable2').append('<tr style="text-align: center" id="rowIndex' + index + '">' +
+            '<td> <button class="btn-disble" onclick="deleteRow(' + index + ')"><span><i class="fas fa-times"></i></span></button> </td>' +
+            '<td> <center> <input class="form-control text-center" name="idItem" type="text" readonly value="' + data[index]._id + '" style="width:50%;" > </center>  </td>' +
+            '<td>' + data[index].name + '</td>' +
+            '<td> <center> <input type="number" class="form-control text-center" name="quantity" min="1" max="' + data[index].quantity + '" onclick="change(' + index + ')" style="width:20%;" value="1" id="quantity' + index + '"> </center></td>' +
+            '<td> <center> <input class="form-control text-center" name="price"  value="' + data[index].price + '" id="per' + index + '" readonly></center> </td>' +
+            '<td> <center> <input class="form-control text-center inwza" value="' + data[index].price + '" id="sum' + index + '" readonly></center></td>' +
+            '</tr>')
+
+        sum = 0
+        document.getElementById('myTable2').getElementsByClassName("inwza");
+        $('#sum' + index).val(parseInt($('#quantity' + index).val()) * parseInt($('#per' + index).val()))
+        for (let i = 0; i < tr.length; i++) {
+            sum += parseInt(tr[i].value)
+        }
+        $('#Money').text(sum)
+    }
+
+    function deleteRow(i) {
+        $('#rowIndex' + i).remove()
+    }
+
+    function change(i) {
+        sum = 0
+        $('#sum' + i).val(parseInt($('#quantity' + i).val()) * parseInt($('#per' + i).val()))
+        for (let i = 0; i < tr.length; i++) {
+            sum += parseInt(tr[i].value)
+        }
+        $('#Money').text(sum)
+
+    }
+
+
+</script>

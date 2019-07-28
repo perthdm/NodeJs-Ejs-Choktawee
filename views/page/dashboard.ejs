@@ -1,0 +1,117 @@
+<%- include('../layouts/header', {title: 'Dashboard'}); -%>
+<%- include('../layouts/css'); -%>
+<%- include('../layouts/endheader'); -%>
+<%- include('../layouts/sidebar',{active:'dashboard'}); -%>
+<%- include('../layouts/topbar'); -%>
+<%- include('../layouts/banner'); -%>
+
+<div class="content">
+    <div class="title">
+        <span><i class="fas fa-chart-line"></i> สรุปผล</span>
+        <div class="line"></div>
+    </div>
+    <div class="row">
+        <div class="col uk-card uk-card-default uk-card-body" style="padding:30px;">
+            <p style="font-size: 30px;">การซื้อรถ</p>
+            <div class="uk-flex uk-flex-between@s uk-flex-center" style="margin-top: 25px;  align-items:center;">
+                <i class="fas fa-shopping-cart" style="font-size:2rem; color: red"></i><span
+                    style="font-size:1.2rem"><%= b.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') %>
+                    บาท</span>
+            </div>
+        </div>
+
+        <div class="col uk-card uk-card-default uk-card-body" style="padding:30px;">
+            <p style="font-size: 30px;">การขายรถ</p>
+            <div class="uk-flex uk-flex-between@s uk-flex-center" style="margin-top: 25px;  align-items:center;">
+                <i class="fas fa-dollar-sign" style="font-size:2rem; color: #e6b800"></i><span
+                    style="font-size:1.2rem"><%= s.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') %>
+                    บาท</span>
+            </div>
+        </div>
+
+        <div class="col uk-card uk-card-default uk-card-body" style="padding:30px;">
+            <p style="font-size: 30px;">การซ่อมรถ</p>
+            <div class="uk-flex uk-flex-between@s uk-flex-center" style="margin-top: 25px;  align-items:center;">
+                <i class="fas fa-tools" style="font-size:2rem; color: #1e87f0"></i><span
+                    style="font-size:1.2rem"><%= r.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') %>
+                    บาท</span>
+            </div>
+        </div>
+
+        <div class="col uk-card uk-card-default uk-card-body" style="padding:30px;">
+            <p style="font-size: 30px;">ต่อทะเบียนรถ</p>
+            <div class="uk-flex uk-flex-between@s uk-flex-center" style="margin-top: 25px;  align-items:center;">
+                <i class="fas fa-file-contract" style="font-size:2rem; color: green"></i><span
+                    style="font-size:1.2rem"><%= p.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') %>
+                    บาท</span>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <hr>
+    <div class="row" style="margin-top:20px;">
+        <div class="col">
+            <div class="uk-card uk-card-default uk-card-body" style="padding:30px; margin-bottom:10px;">
+                <p style="font-size: 30px;">อะไหล่</p>
+                <div class="uk-flex uk-flex-between@s uk-flex-center" style="margin-top: 25px;">
+                    <i class="fas fa-cogs" style="font-size:2rem;"></i><span
+                        style="font-size:1.8rem"><%= i.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') %>
+                        บาท</span>
+                </div>
+            </div>
+
+            <div class="uk-card uk-card-default uk-card-body" style="padding:30px; margin-bottom:10px;">
+                <p style="font-size: 30px;">รายจ่าย</p>
+                <div class="uk-flex uk-flex-between@s uk-flex-center" style="margin-top: 25px;">
+                    <i class="far fa-money-bill-alt" style="font-size:2rem;"></i><span
+                        style="font-size:1.8rem"><%= allSell.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') %>
+                        บาท</span>
+                </div>
+            </div>
+
+            <div class="uk-card uk-card-default uk-card-body" style="padding:30px; margin-bottom:10px;">
+                <p style="font-size: 30px;">กำไร-ขาดทุน</p>
+                <div class="uk-flex uk-flex-between@s uk-flex-center" style="margin-top: 25px;">
+                    <i class="fas fa-wallet" style="font-size:2rem;"></i><span
+                        style="font-size:1.8rem"><%= profit.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') %>
+                        บาท</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col" style="display:flex;">
+            <div class="uk-card uk-card-default uk-card-body sellcar"
+                style="height:55vh; display:flex; justify-content: center; align-items: center; width:50%; border-bottom: 20px solid #e6b800;">
+                <div>
+                    <center>
+                        <i class="fas fa-user-tie" style="font-size:5rem"></i>
+                        <p style="font-size: 20px;">ลูกค้า</p>
+                        <p style="font-size: 50px;"><%= c %> คน</p>
+                    </center>
+                </div>
+
+            </div>
+
+            <div class="uk-card uk-card-default uk-card-body renew"
+                style="height:55vh; display:flex; justify-content: center; align-items: center; width:50%; margin-left:10px; border-bottom: 20px solid green">
+                <div>
+                    <center>
+                        <i class="fas fa-users" style="font-size:5rem"></i>
+                        <p style="font-size: 20px;">พนักงาน</p>
+                        <p style="font-size: 50px;"><%= e %> คน</p>
+                    </center>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+<%- include('../layouts/javascript'); -%>

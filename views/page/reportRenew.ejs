@@ -1,0 +1,126 @@
+<%- include('../layouts/header', {title: 'ใบรับรถ/ใบรับทะเบียน'}); -%>
+<%- include('../layouts/css'); -%>
+<%- include('../layouts/endheader'); -%>
+<%- include('../layouts/sidebar',{active:'reportRenew'}); -%>
+<%- include('../layouts/topbar'); -%>
+<%- include('../layouts/banner'); -%>
+
+
+<!-- contenr -->
+
+<div class="content">
+
+    <div class="title">
+        <span><i class="fas fa-home "></i> ใบรับรถ/ใบรับทะเบียน</span>
+        <div class="line"></div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="form-group col">
+            <input type="email" class="form-control" id="myInput" onkeyup="search()"
+                placeholder="ค้นหาชื่อลูกค้า / เลขที่เอกสาร / ประเภท" maxlength="30">
+        </div>
+        <!-- <div class="form-group col-2">
+            <button class="btn-light-green btn-full"><span><i class="fas fa-search"></i> ค้นหา</span></button>
+        </div> -->
+        <div class="form-group col-2">
+            <select class="form-control service" id="fix">
+                <option selected>ทั้งหมด</option>
+                <option>ใบรับทะเบียน</option>
+                <option>ใบรับรถ</option>
+
+            </select>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-sm" id="myTable">
+            <thead class="thead-light">
+                <tr>
+                    <th>วันที่เอกสาร</th>
+                    <th>เลขที่เอกสาร</th>
+                    <th>ชื่อลูกค้า</th>
+                    <th>ประเภท</th>
+                    <th>ตัวเลือก</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+
+                <% for(var i = 0 ; i < result.length ; i++) { %>
+                <tr>
+                    <td class="text-center">
+                        <%= result[i].date.toLocaleDateString() %>
+                    </td>
+                    <td class="text-center">
+                        <%= result[i]._id %>
+                    </td>
+                    <td>
+                        <%= result[i].order.customer.firstname %>
+                        <%= result[i].order.customer.lastname %>
+                    </td>
+                    <td>ใบรับทะเบียน</td>
+
+                    <td>
+                        <button onclick="viewRENEW('<%= result[i]._id %>')" class="btn-show"><span><i
+                                    class="fas fa-eye"></i></span></button>
+
+                    </td>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- contenr -->
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script>
+    function cancle() {
+        confirm("ต้องการยกเลิกใบรถ/ใบรับทะเบียน");
+    }
+
+    function viewRENEW(_id) {
+        window.location = "/report/renewReceipt/" + _id;
+    }
+
+    function viewCAR(_id) {
+        window.location = "/report/carReceipt/" + _id;
+    }
+
+
+
+    function search() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            td2 = tr[i].getElementsByTagName("td")[2];
+            td3 = tr[i].getElementsByTagName("td")[3];
+
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                txtValue2 = td2.textContent || td2.innerText;
+                txtValue3 = td3.textContent || td3.innerText;
+
+                if (txtValue.toUpperCase().indexOf(filter) > -1 || txtValue.toUpperCase().indexOf(filter) > -1 || txtValue3.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
+
+
+</body>
+
+</html>
+<%- include('../layouts/javascript'); -%>

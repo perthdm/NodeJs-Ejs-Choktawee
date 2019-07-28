@@ -1,0 +1,14 @@
+.fixed-a4{
+    border: 1px solid black;
+    width: 768px;
+    height: 1024px; 
+    
+}
+.fixed-left{
+    text-align: left;
+    margin-left: 5%;
+    margin-top: 5%;
+}
+p{
+    font-size: 14px;
+}

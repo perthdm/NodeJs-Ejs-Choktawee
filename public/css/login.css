@@ -1,0 +1,35 @@
+/* body{
+    background-image: url('../images/bg.svg');
+    height: 100vh;
+    background-size: cover;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    margin: 0;
+    z-index: -1000;
+} */
+
+body{
+    background-image: url('../images/bg.png');
+    height: 100vh;
+    background-size: cover;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    margin: 0;
+    
+
+}
+
+
+.triangle{
+    position: fixed;
+    border-top: 100vh solid #333333;
+    border-right: 100vw solid transparent; /* ซ่อนขอบขวา */
+    border-bottom: 100px solid transparent; /* ซ่อนขอบล่าง */
+    border-left: 0px solid transparent; /* ซ่อนขอบซ้าย */
+    top: 0;
+    
+}
+
+.box{
+    z-index: 12222222222222;
+}

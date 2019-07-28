@@ -1,0 +1,41 @@
+p{  
+    margin: 0;
+    font-family: 'Prompt', sans-serif;
+    font-size: 16px;
+
+}
+
+.btn-home{
+    width: 100%;
+    height: auto;
+    min-width: 200px;
+    min-height: 200px; 
+    background-color: white;
+    border: 0;
+    -webkit-box-shadow: 0px 0px 4px -1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 4px -1px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 4px -1px rgba(0,0,0,0.75);
+    margin: 5px;
+   
+}
+
+.repair {
+    color: blue;
+    border-bottom: 3px solid blue;
+}
+
+.buycar {
+    color: red;
+    border-bottom: 3px solid red;
+}
+
+.sellcar {
+    color:#e6b800;
+    border-bottom: 3px solid #e6b800;
+}
+
+.renew {
+    color: green;
+    border-bottom: 3px solid green;
+}
+

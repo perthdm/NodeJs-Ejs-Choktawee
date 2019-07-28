@@ -1,0 +1,530 @@
+<%- include('../layouts/header', {title: 'ขายรถ : ข้อมูลลูกค้า'}); -%>
+<%- include('../layouts/css'); -%>
+<%- include('../layouts/endheader'); -%>
+<%- include('../layouts/sidebar',{active:'home'}); -%>
+<%- include('../layouts/topbar'); -%>
+
+
+<!------------------------ STEP 1 -------------------------->
+<div class="content" id="step1" style="display:block">
+    <div class="title margin-top-30">
+        <img src="/images/sellcar.svg" width="200px">
+        <span> ขายรถ : ข้อมูลลูกค้า</span>
+        <div class="line"></div>
+    </div>
+    <center>
+        <div class="stepwizard">
+            <div class="stepwizard-row">
+                <div class="stepwizard-step">
+                    <button type="button" class="btn-circle btn-green-step">1</button>
+                    <p class="color-green">ข้อมูลลูกค้า</p>
+                </div>
+                <div class="stepwizard-step">
+                    <button type="button" class="btn-circle" disabled="disabled">2</button>
+                    <p>ข้อมูลรถ</p>
+                </div>
+                <div class="stepwizard-step">
+                    <button type="button" class="btn-circle" disabled="disabled">3</button>
+                    <p>สรุปการทำรายการ</p>
+                </div>
+                <div class="stepwizard-step">
+                    <button type="button" class="btn-circle" disabled="disabled">4</button>
+                    <p>การทำรายการสำเร็จ</p>
+                </div>
+            </div>
+        </div>
+    </center>
+
+    <div class="row">
+        <div class="form-group col">
+            <input type="text" list="brow" class="form-control" maxlength="30" id="inputSearch"
+                placeholder="ค้นหารหัส/ชื่อลูกค้า" onchange="showData()">
+            <datalist id="brow">
+                <% for(let i = 0 ; i < result.length ; i++) { %>
+                <option style="background-color:red !important;"
+                    value="<%= i+1 %> | <%= result[i].firstname %> <%= result[i].lastname %>"></option>
+                <% } %>
+            </datalist>
+        </div>
+
+        <div class="form-group col-2">
+            <a href="/customer/addCustomer">
+                <button class="btn-green btn-full"><span><i class="fas fa-plus-circle"></i>
+                        เพิ่มลูกค้า</span></button>
+            </a>
+        </div>
+    </div>
+
+
+    <div id="form-1">
+        <div class="row">
+            <div class="form-group col">
+                <label>ชื่อ</label>
+                <input readonly type="text" class="form-control" id="firstname" maxlength="30">
+                <input hidden type="text" class="form-control" name="_id" id="_id">
+            </div>
+            <div class="form-group col">
+                <label>นามสกุล</label>
+                <input readonly type="text" class="form-control" id="lastname" maxlength="30">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col">
+                <label>เลขประจำตัวประชาชน/เลขผู้เสียภาษี</label>
+                <input readonly type="text" class="form-control" id="idCard" maxlength="13">
+            </div>
+            <div class="form-group col">
+                <label>วัน เดือน ปีเกิด</label>
+                <input readonly type="date" class="form-control" id="birthday">
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col">
+                <label>E-mail</label>
+                <input readonly type="text" class="form-control" id="email" maxlength="30">
+            </div>
+            <div class="form-group col">
+                <label>เบอร์โทรศัพท์</label>
+                <input readonly type="text" class="form-control" id="tel" maxlength="10">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col">
+                <label>ที่อยู่</label>
+                <input readonly type="text" class="form-control" id="addressNumber" maxlength="30">
+            </div>
+            <div class="form-group col">
+                <label>ถนน</label>
+                <input readonly type="text" class="form-control" id="street" maxlength="30">
+            </div>
+            <div class="form-group col">
+                <label>ตำบล/เขต</label>
+                <input readonly type="text" class="form-control" id="subdistrict" maxlength="30">
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="form-group col">
+                <label>อำเภอ</label>
+                <input readonly type="text" class="form-control" id="district" maxlength="30">
+            </div>
+            <div class="form-group col">
+                <label>จังหวัด</label>
+                <input readonly type="text" class="form-control" id="province" maxlength="30">
+
+            </div>
+            <div class="form-group col">
+                <label>รหัสไปรษณีย์</label>
+                <input readonly type="text" class="form-control" id="zipCode" maxlength="5">
+            </div>
+        </div>
+
+        <div class="row margin-top-30">
+            <div class="col text-left"></div>
+            <div class="col text-right">
+                <a onclick="validateForm('form-1')" class="uk-button uk-button-default uk-button-medium"
+                    style=" width:140px; height: 40px; background-color:#8CC63F; color:white">
+                    ถัดไป
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!------------------------ STEP 1 -------------------------->
+
+
+<!------------------------ STEP 2 -------------------------->
+<div class="content" id="step2" style="display:none;">
+    <div class="title margin-top-30">
+        <img src="/images/sellcar.svg" width="200px">
+        <span> ขายรถ : ข้อมูลรถ</span>
+        <div class="line"></div>
+    </div>
+    <center>
+        <div class="stepwizard">
+            <div class="stepwizard-row">
+                <div class="stepwizard-step">
+                    <button type="button" class="btn-circle btn-green-step">1</button>
+                    <p class="color-green">ข้อมูลลูกค้า</p>
+                </div>
+                <div class="stepwizard-step">
+                    <button type="button" class="btn-circle btn-green-step" >2</button>
+                    <p class="color-green">ข้อมูลรถ</p>
+                </div>
+                <div class="stepwizard-step">
+                    <button type="button" class="btn-circle" disabled="disabled">3</button>
+                    <p>สรุปการทำรายการ</p>
+                </div>
+                <div class="stepwizard-step">
+                    <button type="button" class="btn-circle" disabled="disabled">4</button>
+                    <p>การทำรายการสำเร็จ</p>
+                </div>
+            </div>
+        </div>
+    </center>
+
+    <div class="row">
+        <div class="col">
+            <p class="color-green">ข้อมูลรถ</p>
+          
+            <div style="height: 550px;overflow: auto;">
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead class="thead-light">
+                            <tr>
+                                <th colspan="2">รายละเอียดรถ</th>
+                                <th>ราคา</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(var i=0;i <car.length;i++) { %>
+                            <tr onclick="select('<%= i %>')" id="bg<%= i %>">
+                                <td class="text-left" style="width: 150px;">
+                                    <div class="img-table"
+                                        style="background-image: url('/upload/<%= car[i].img %>') ; ">
+                                        <img src="/images/photo.png">
+                                    </div>
+                                </td>
+                                <td class="text-left">
+                                    <span><%= car[i].year %> </span> <span> <%= car[i].brand %> </span> <span>
+                                        <%= car[i].model %> </span> <br> เชื้อเพลิง : <span><%= car[i].fuel %></span>
+                                    <br> สีรถ : <span><%= car[i].color %></span>
+                                </td>
+                                <td class="text-center">
+                                    <%= car[i].price.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,') %></td>
+                            </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- input right side -->
+        <div class="col" style="padding-left: 40px;" id="add">
+            <div class="row">
+                <div class="form-group col">
+                    <label for="inputEmail4">รหัสรถ</label>
+                    <input type="text" readonly class="form-control" placeholder="" id="typeInput">
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="form-group col">
+                    <label for="inputAddress">ยี่ห้อ</label>
+                    <input type="text" disabled readonly class="form-control" placeholder="" id="bandInput">
+                </div>
+                <div class="form-group col">
+                    <label for="inputAddress">รุ่น</label>
+                    <input type="text" disabled readonly class="form-control" placeholder="" id="genInput">
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputAddress">หมายเลขตัวถัง</label>
+                <input type="text" disabled readonly class="form-control" placeholder="" id="tankNumberInput">
+            </div>
+            <div class="form-group">
+                <label for="inputAddress">หมายเลขเครื่องยนต์</label>
+                <input type="text" disabled readonly class="form-control" placeholder="" id="motorNumberInput">
+            </div>
+            <div class="form-group">
+                <label for="inputEmail4">เลขทะเบียน</label>
+                <input type="text" disabled readonly class="form-control" placeholder="" id="NoInput">
+            </div>
+
+
+            <div class="form-group">
+                <label for="inputEmail4">เชื้อเพลิง</label>
+                <input type="text" disabled readonly class="form-control" placeholder="" id="fuelInput">
+            </div>
+            <div class="form-group">
+                <label for="inputEmail4">สี</label>
+                <input type="text" disabled readonly class="form-control" placeholder="" id="colorInput">
+            </div>
+            <div class="form-group">
+                <label for="inputEmail4">รุ่นปี</label>
+                <input type="text" disabled readonly class="form-control" placeholder="" id="yearInput">
+            </div>
+            <!-- input right side -->
+        </div>
+    </div>
+
+    <div class="row margin-top-30">
+        <div class="col text-left"><a href="#" onclick="btBackStep2()"><button class="btn-green">กลับ</button></a></div>
+        <div class="col text-right"><button class="btn-green" onclick="validateForm('add')" type="button">ถัดไป</button>
+        </div>
+    </div>
+</div>
+<!------------------------ STEP 2 -------------------------->
+
+<!------------------------ STEP 3 -------------------------->
+<div class="content" id="step3" style="display:none;">
+    <div class="title margin-top-30">
+        <img src="/images/sellcar.svg" width="200px">
+        <span> ขายรถ : สรุปการทำรายการ </span>
+        <div class="line"></div>
+    </div>
+    <center>
+        <div class="stepwizard">
+            <div class="stepwizard-row">
+                <div class="stepwizard-step">
+                    <button type="button" class="btn-circle btn-green-step">1</button>
+                    <p class="color-green">ข้อมูลลูกค้า</p>
+                </div>
+                <div class="stepwizard-step">
+                    <button type="button" class="btn-circle btn-green-step">2</button>
+                    <p class="color-green">ข้อมูลทะเบียน</p>
+                </div>
+                <div class="stepwizard-step">
+                    <button type="button" class="btn-circle btn-green-step">3</button>
+                    <p class="color-green">สรุปการทำรายการ</p>
+                </div>
+                <div class="stepwizard-step">
+                    <button type="button" class="btn-circle" disabled="disabled">4</button>
+                    <p>การทำรายการสำเร็จ</p>
+                </div>
+            </div>
+        </div>
+    </center>
+
+
+    <div class="row">
+        <div class="form-group col text-green">
+            ข้อมูลลูกค้า
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div style="padding-left: 30px">ชื่อ-นามสกุล : <span id="ConfirmFirstname"></span> <span
+                    id="ConfirmLastname"></span>
+                <br> เลขประจำตัวประชาชน/เลขที่ผู้เสียภาษี : <span id="ConfirmIdCard"></span>
+                <br> ที่อยู่ : <span id="ConfirmAddress"></span>
+
+            </div>
+        </div>
+
+        <div class="col">
+            <div style="padding-right: 30px">
+                E-mail : <span id="ConfirmEmail"></span>
+                <br> เบอร์โทรศัพท์ : <span id="ConfirmTel"></span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="form-group col text-green">
+            <b>ข้อมูลรถ</b>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col ">
+            <div style="padding-left: 30px">
+                ยี่ห้อ : <span id="ConfirmBrand"></span> <br> หมายเลขตัวถัง : <span id="ConfirmChassisNo"></span> <br>
+                เลขทะเบียน : <span id="ConfirmNo"></span> <br> สี : <span id="ConfirmColor"></span> <br>
+            </div>
+
+        </div>
+
+
+        <div class="col">
+            <div style="padding-right: 30px">
+                รุ่น : <span id="ConfirmModel"></span> <br> หมายเลขเครื่องยนต์ : <span id="ConfirmEngineNo"></span> <br>
+                เชื้อเพลิง : <span id="ConfirmFuel"></span> <br> รุ่นปี : <span id="ConfirmYear"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col text-green">
+            ข้อมูลค่าใช้จ่าย
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-sm">
+            <thead class="thead-light">
+                <tr>
+                    <th>ลำดับที่</th>
+                    <th>รายการ</th>
+                    <th>ราคา</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center">1</td>
+                    <td class="text-center"><span id="list"></td>
+                    <td class="text-center"><span id="price"></td>
+                </tr>
+                <tr>
+                    <td class="text-center"></td>
+                    <td class="text-center"></td>
+                    <td class="text-center">รวมทั้งสิ้น</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <form method="POST" action="/sell">
+        <input type="text" hidden name="idCustomer" id="idCustomer">
+        <input type="text" hidden name="idCar" id="idCar">
+        <div class="col text-left">
+                <button class="btn-green" onclick="btBackStep3()"> กลับ </button>
+            </div>
+            <div class="col text-right">
+                <button class="btn-green" type="submit"> ยืนยัน </button>
+            </div>
+        </div>
+    </form>
+
+</div>
+<!------------------------ STEP 3 -------------------------->
+
+</body>
+
+</html>
+<%- include('../layouts/javascript'); -%>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script>
+    let car = JSON.parse('<%- JSON.stringify(car) %>');
+    let data = JSON.parse('<%- JSON.stringify(result) %>');
+    function showData() {
+        var str = document.getElementById("inputSearch").value;
+        var res = str.split(" | ");
+        var index = parseInt(res[0]) - 1;
+        var strDate = new Date(data[index].birthday);
+        var year = strDate.getFullYear();
+        var month = strDate.getMonth().toString().padStart(2, '0');
+        var date = (strDate.getDate()).toString().padStart(2, '0');
+        $('#birthday').val(year + '-' + month + '-' + date);
+        $("#_id").val(data[index]._id);
+        $("#firstname").val(data[index].firstname);
+        $("#lastname").val(data[index].lastname);
+        $("#idCard").val(data[index].idCard);
+        $("#email").val(data[index].email);
+        $("#tel").val(data[index].tel);
+        $("#addressNumber").val(data[index].address.addressNumber);
+        $("#street").val(data[index].address.street);
+        $("#subdistrict").val(data[index].address.subdistrict);
+        $("#district").val(data[index].address.district);
+        $("#province").val(data[index].address.province);
+        $("#zipCode").val(data[index].address.zipCode);
+        $("#inputSearch").val("");
+    }
+
+
+    function btNextStep1() {
+        document.getElementById("step1").style.display = "none";
+        document.getElementById("step2").style.display = "block";
+    }
+
+    function btNextStep2() {
+        /// --------------- Set Input --------------- //
+
+        $('#ConfirmFirstname').text($('#firstname').val());
+        $('#ConfirmDate').text($('#date').val());
+        $('#ConfirmLastname').text($('#lastname').val());
+        $('#ConfirmIdCard').text($('#idCard').val());
+        $('#ConfirmEmail').text($('#email').val());
+        $('#ConfirmTel').text($('#tel').val());
+        $('#ConfirmAddress').text("");
+        $('#ConfirmAddress').append($('#addressNumber').val() + ' ' +
+            $('#street').val() + ' ' +
+            $('#subdistrict').val() + ' ' +
+            $('#district').val() + ' ' +
+            $('#province').val() + ' ' +
+            $('#zipCode').val());
+        $('#ConfirmBrand').text($('#bandInput').val());
+        $('#ConfirmModel').text($('#genInput').val());
+        $('#ConfirmChassisNo').text($('#tankNumberInput').val());
+        $('#ConfirmEngineNo').text($('#motorNumberInput').val());
+        $('#ConfirmNo').text($('#NoInput').val());
+        $('#ConfirmFuel').text($('#fuelInput').val());
+        $('#ConfirmColor').text($('#colorInput').val());
+        $('#ConfirmYear').text($('#yearInput').val());
+        $('#list').text(car[indexCar].brand + " " + car[indexCar].model)
+        $('#price').text(car[indexCar].price);
+        $('#idCustomer').val($('#_id').val());
+        $('#idCar').val($('#typeInput').val());
+        // --------------- Set Input --------------- //
+
+        document.getElementById("step2").style.display = "none";
+        document.getElementById("step3").style.display = "block";
+    }
+
+    function btBackStep2() {
+        document.getElementById("step2").style.display = "none";
+        document.getElementById("step1").style.display = "block";
+    }
+
+    function btNextStep3() {
+        document.getElementById("step3").style.display = "none";
+        document.getElementById("step4").style.display = "block";
+    }
+
+    function btBackStep3() {
+        document.getElementById("step3").style.display = "none";
+        document.getElementById("step2").style.display = "block";
+    }
+    var indexCar = ""
+    function select(num) {
+        indexCar = num;
+        document.getElementById("typeInput").value = car[num]._id
+        document.getElementById("bandInput").value = car[num].brand
+        document.getElementById("genInput").value = car[num].model
+        document.getElementById("tankNumberInput").value = car[num].idTank
+        document.getElementById("motorNumberInput").value = car[num].idMotor
+        document.getElementById("NoInput").value = car[num].idCar
+        document.getElementById("colorInput").value = car[num].color
+        document.getElementById("fuelInput").value = car[num].fuel
+        document.getElementById("yearInput").value = car[num].year
+
+        for (let i = 0; i < car.length; i++) {
+            $("#bg" + i).css('background-color', '#fff');
+        }
+
+        $("#bg" + num).css('background-color', '#DDDDDD');
+
+    }
+
+    function validateForm(form) {
+        var Form = form;
+        console.log(Form);
+
+        var x = document.getElementById(Form).getElementsByClassName("form-control");
+        console.log(x);
+
+        var statusInput = false;
+
+        for (var i = 0; i < x.length; i++) {
+            if (x[i].value == "") {
+                if (Form == 'form-1') {
+                    swal("", "กรุณาเลือกลูกค้า", "error")
+                } else {
+                    swal("", "กรุณากรอกข้อมูลให้ครบถ้วน", "error")
+                }
+                statusInput = false;
+                break;
+            } else {
+                statusInput = true;
+            }
+        }
+        if (statusInput) {
+            if (Form == 'form-1') {
+                btNextStep1()
+            } else {
+                btNextStep2();
+            }
+        }
+    }
+</script>

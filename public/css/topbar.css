@@ -1,0 +1,80 @@
+.topbar{
+
+    width: 100%;
+
+    position: fixed;
+
+    background-color: #333333;
+
+    height: 40px;
+
+    top: 0px;
+
+    line-height: 40px;
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    z-index: 10000;
+
+   
+
+
+
+}
+
+
+
+.user{
+
+  
+
+    color: #fff;
+
+    text-align: right;
+
+    margin-right: 15px;
+
+    padding-left: 30px;
+
+    border-left: 1px solid #8CC63F;
+
+    overflow: hidden;
+
+}
+
+
+
+
+
+
+
+.user i {
+
+    padding-left: 10px;
+
+   }
+
+   
+
+
+
+   .banner{
+
+       /* margin-left: 235px; */
+
+       height: 240px;
+
+       background-image: url("../images/banner.svg");
+
+       background-repeat: no-repeat;
+
+       background-size: cover;
+
+       background-position: right;
+
+   }
+
+
+

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="/images/favicon.ico" />
+    <!-- icon Fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <!-- icon Fontawesome -->
+
+    <!-- CSS Global -->
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/topbar.css">
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    <link rel="stylesheet" type="text/css" href="/css/content.css">
+    <!-- CSS Global -->
+    <title>ใบรับรถ</title>
+    <style>
+        .a4 {
+            border: 1px solid black;
+            width: 768px;
+            height: 1024px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- contenr -->
+    <center>
+        <div class="a4">
+            <img src="/images/logo.svg" width="140" height="140" style="margin-top:20px">
+            <h3>บริษัทโชคทวีออโต้เซลล์</h3>
+            <h2>ใบรับรถ</h2>
+            <div style="display: flex;   width: 90% ; border: 1px solid black">
+
+                <div style=" width: 50% ; right: 0 ; text-align: left ; padding-left: 40px ; margin-top:20px">
+                    <p>เลขประจำตัวผู้เสียภาษี : 1234567890123</p>
+                    <p>บริษัท 9Developer</p>
+                    <p>12/8 ถ.วิภาวดีรังสิต หลักสี่ ดอนเมือง กทม 10210</p>
+                    <p>โทรศัพท์ : 029874562</p>
+                    <p>Fax : 029874562</p>
+                    <br>
+                </div>
+
+                <div style=" width: 50% ; right: 0 ; text-align: left ; padding-right:10px; margin-top:20px ">
+                    <div style="margin-left:20%">
+                        <p>เลขที่ :
+                            <%= result._id %>
+                        </p>
+                        <p>วันที่ :
+                            <%= result.date.getDate() %>/<%= result.date.getMonth()+1 %>/<%= result.date.getFullYear() %>
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <h3 style="text-align:left ;  width:90%">ข้อมูลการเข้าใช้บริการ</h3>
+            <div style="display: flex;   width: 90% ; border: 1px solid black ">
+
+                <div style=" width: 45% ; right: 0 ; text-align: left ; padding-left: 40px ; margin-top:20px">
+                    <p style="font-weight:bold ; font-size:15px">รายละเอียดลูกค้า</p>
+                    <br>
+
+                    <p>ชื่อลูกค้า :
+                        <%= result.order.customer.firstname %>
+                        <%= result.order.customer.lastname %>
+                    </p>
+                    <br>
+
+                    <p>โทรศัพท์ :
+                        <%= result.order.customer.tel %>
+                    </p>
+                    <br>
+
+                    <p>รายละเอียดการใช้บริการ :
+                        <%= result.order.detail %>
+                    </p>
+                    <br>
+
+                    <div style="margin-top:10px ; "></div>
+
+                    <p style="font-weight:bold ; font-size:15px">รายละเอียดข้อมูลรถยนต์</p>
+                    <div style="margin-top:30px ; "></div>
+
+                    <p>ยี่ห้อ :
+                        <%= result.order.car.brand %>
+                    </p>
+                    <br>
+
+                    <p>รุ่น :
+                        <%= result.order.car.model %>
+                    </p>
+                    <br>
+                    <p>ทะเบียรถ :
+                        <%= result.order.car.No %>
+                    </p>
+
+                    <br>
+
+                </div>
+
+                <div style=" width: 45% ; right: 0 ; text-align: left ; padding-right:10px;  margin-top:20px">
+                    <br>
+                    <br>
+
+                    <p>ที่อยู่ :
+                        <%= result.order.customer.address.addressNumber %>
+                    </p>
+                    <br>
+                    <p>ถนน :
+                        <%= result.order.customer.address.street %> ตำบล :
+                        <%= result.order.customer.address.subdistrict %>
+                    </p>
+                    <br>
+                    <p>อำเภอ :
+                        <%= result.order.customer.address.district %> จังหวัด :
+                        <%= result.order.customer.address.province %> รหัสไปรษณี :
+                        <%= result.order.customer.address.zipCode %>
+                    </p>
+                    <br>
+
+                    <div style="margin-top:43px">
+
+                    </div>
+
+
+                    <br>
+                    <p>สีรถ :
+                        <%= result.order.car.color %>
+                    </p>
+                    <br>
+                    <p>ปีที่ผลิต :
+                        <%= result.order.car.year %>
+                    </p>
+                    <br>
+
+                    <div style="margin-top:40px ;"></div>
+
+
+                </div>
+
+
+            </div>
+
+            <div style="text-align:left ; padding-left: 40px">
+                <br>
+                <b>*** กรุณานำของมีค่าออกจากรถทุกครั้ง หากมีการสูญหายทางร้านจะไม่รับผิดชอบใดๆทั้งสิ้น</b><br>
+                <b>*** กรณีลูกค้าทำใบรับรถหาย ต้องแสดงเอกสารการเป็นเจ้าของรถ มิฉะนั้นไม่อนุญาตให้นำรถออกจากร้าน</b>
+            </div>
+
+            <div style="display: flex;   width: 90% ; border: 1px solid black ">
+
+                <div
+                    style=" width: 45% ; right: 0 ; text-align: left ; padding-left: 40px ; margin-top:20px ; margin-bottom: 20px">
+                    <p>ผู้ตรวจรับรถ : ................................................</p>
+                    <p>วันที่ : ................................................</p>
+                </div>
+
+                <div
+                    style=" width: 45% ; right: 0 ; text-align: left ; padding-right:10px;  margin-top:20px ; margin-bottom: 20px">
+                    <p>ลูกค้า : ................................................</p>
+                    <p>วันที่ : ................................................</p>
+                </div>
+
+            </div>
+        </div>
+    </center>
+
+
+    <!-- contenr -->
+    <button onclick="myFunction()" id="bt-print" style="margin-left:90vw;">Print this page</button>
+
+
+
+
+</body>
+
+</html>
+<%- include('../layouts/javascript'); -%>
+<script>
+    let data = JSON.parse('<%- JSON.stringify(result) %>');
+    console.log(data);
+
+    function myFunction() {
+        document.getElementById("bt-print").style.display = "none";
+        window.print();
+
+    }
+
+</script>

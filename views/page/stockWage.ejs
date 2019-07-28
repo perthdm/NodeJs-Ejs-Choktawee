@@ -1,0 +1,172 @@
+<%- include('../layouts/header', {title: 'อัตราค่าบริการ'}); -%>
+<%- include('../layouts/css'); -%>
+<%- include('../layouts/endheader'); -%>
+<%- include('../layouts/sidebar',{active:'wage'}); -%>
+<%- include('../layouts/topbar'); -%>
+<%- include('../layouts/banner'); -%>
+
+
+
+<!---------------------------------------- contenr ---------------------------------------->
+
+<div class="content">
+
+    <div class="title">
+        <span><i class="fas fa-home "></i> อัตราค่าบริการ</span>
+        <div class="line"></div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="form-group col">
+            <input type="email" class="form-control" id="myInput" onkeyup="search()" maxlength="30"
+                placeholder="ค้นหาอัตราค่าบริการ">
+        </div>
+        <!-- <div class="form-group col-2">
+
+            <button class="btn-light-green btn-full"><span><i class="fas fa-search"></i> ค้นหา</span></button>
+
+        </div> -->
+        <div class="form-group col-2">
+
+            <button class="btn-green btn-full" href="#modal-sections" uk-toggle><span><i class="fas fa-plus-circle"></i>
+                    เพิ่มอัตราค่าบริการ</span></button>
+
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-sm" id="myTable">
+            <thead class="thead-light">
+                <tr>
+                    <th>ลำดับ</th>
+                    <th>รายการ</th>
+                    <th>ราคา</th>
+
+                    <th>ตัวเลือก</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                <% if(result.length == 0 || result == null) { %>
+                <tr>
+                    <td colspan="4">ไม่มีอัตราค่าบริการในคลัง </td>
+                </tr>
+                <% } else { %>
+                <% for(var i = 0; i < result.length ; i++ ) { %>
+                <tr>
+                    <td>
+                        <%= i+1 %>
+                    </td>
+                    <td>
+                        <%= result[i].name %>
+                    </td>
+                    <td>
+                        <%= result[i].price %>
+
+                    </td>
+                    <td>
+
+                        <button onclick="del('<%= result[i]._id %>')" class="btn-remove"><span><i
+                                    class="fas fa-trash-alt"></i></span></button>
+                    </td>
+
+                </tr>
+                <% } %>
+                <% } %>
+
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+<div id="modal-sections" uk-modal>
+    <div class="uk-modal-dialog">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <div class="uk-modal-header">
+            <h2 class="uk-modal-title">เพิ่มอัตราค่าบริการ</h2>
+        </div>
+        <form id="form" onsubmit="return validateForm()"method="POST" action="/stock/stockWage">
+            <div class="uk-modal-body">
+
+                <div class="form-group">
+                    <label>รายชื่ออัตราค่าบริการ</label>
+                    <input type="text" class="form-control" name="name" maxlength="50" >
+
+                </div>
+                <div class="form-group">
+                    <label>ราคาค่าบริการ</label>
+                    <input type="number" min="0" class="form-control" name="price" value="0" >
+
+                </div>
+
+            </div>
+            <div class="uk-modal-footer uk-text-right">
+                <button class="uk-button uk-button-default uk-modal-close" type="button">ยกเลิก</button>
+                <button class="uk-button uk-button-primary" style="background-color:#8cc63f; color:#FFF;"type="submit">บันทึก</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!---------------------------------------- contenr ---------------------------------------->
+
+
+
+
+<%- include('../layouts/footer'); -%>
+<%- include('../layouts/javascript'); -%>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+     function validateForm() {
+        var x = document.getElementById("form").getElementsByClassName("form-control")
+      
+        for (var i = 0; i < x.length; i++) {
+            console.log(x[i].value)
+            if (x[i].value == "") {
+                swal({
+                    title: "",
+                    text: "กรุณากรอกข้อมูลให้ครบถ้วน",
+                    icon: "error",
+                    button: "ตกลง",
+                })
+                return false;
+            }
+        }
+    }
+    function del(_id) {
+
+
+        window.location = "/stock/stockWage/delete/" + _id;
+    }
+
+
+
+    function search() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>

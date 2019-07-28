@@ -1,0 +1,39 @@
+.fixed-a4{
+    border: 1px solid black;
+    width: 768px;
+    height: 1024px;
+}
+
+img{
+    padding:30px;
+}
+
+table,th{
+    border: 2px solid green;
+    border-collapse: collapse;
+}
+
+th{
+    font-size: 12px;
+}
+
+td{
+    text-align: center;
+    font-size: 12px;
+}
+
+.bodybill{
+    height:450px;
+}
+
+.detailbodybill{
+    margin-top: -220px;
+}
+
+p.one{
+    margin-top:-220px;
+}
+
+p.two{
+    font-size: 12px;
+}

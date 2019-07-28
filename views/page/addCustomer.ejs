@@ -1,0 +1,185 @@
+<%- include('../layouts/header', {title: 'เพิ่มลูกค้า'}); -%>
+<%- include('../layouts/css'); -%>
+<%- include('../layouts/endheader'); -%>
+<%- include('../layouts/sidebar',{active:'customer'}); -%>
+<%- include('../layouts/topbar'); -%>
+
+
+
+
+
+
+<!-- content -->
+
+
+
+<div class="content">
+    <div class="title margin-top-30">
+        <span><i class="fas fa-home "></i> เพิ่มลูกค้า</span>
+        <div class="line"></div>
+    </div>
+
+
+
+    <div style="display: flex;justify-content: center;">
+        <div style="max-width: 600px;width: 100%;">
+            <label class="header">ข้อมูลลูกค้า</label>
+
+            <form id="form" onsubmit="return validateForm()" method="post" action="/customer/addCustomer">
+
+                <div style="padding-left: 20px;padding-top: 20px;">
+
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label for="inputEmail4">ชื่อ</label>
+                            <input type="text" class="form-control" name="firstname" maxlength="30" >
+                        </div>
+
+                        <div class="form-group col">
+                            <label for="inputEmail4">นามสกุล</label>
+                            <input type="text" class="form-control" name="lastname" maxlength="30" >
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputAddress">เลขประจำตัวประชาชน/เลขผู้เสียภาษี</label>
+                        <input type="text" class="form-control" name="idCard" id="idCard" maxlength="13" >
+                        <span id="errmsg" style="color: red"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputAddress">วัน เดือน ปีเกิด</label>
+                        <input type="date" class="form-control" name="birthday" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputAddress">E-mail</label>
+                        <input type="text" class="form-control" id="email" name="email" maxlength="30" >
+                        <span id="errmsg" style="color: red"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputAddress">เบอร์โทรศัพท์</label>
+                        <input type="text" class="form-control" name="tel" id="tel" maxlength="10" >
+                    </div>
+
+
+
+                    <div class="form-row">
+
+                        <div class="form-group col">
+                            <label for="inputEmail4">บ้านเลขที่</label>
+                            <input type="text" class="form-control" name="addressNumber" maxlength="30" >
+                        </div>
+
+                        <div class="form-group col">
+                            <label for="inputEmail4">ถนน</label>
+                            <input type="text" class="form-control" name="street" maxlength="30" >
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-row">
+
+                        <div class="form-group col">
+                            <label for="inputEmail4">ตำบล/เขต</label>
+                            <input type="text" class="form-control" name="subdistrict" maxlength="30" >
+                        </div>
+
+                        <div class="form-group col">
+                            <label for="inputEmail4">อำเภอ</label>
+                            <input type="text" class="form-control" name="district" maxlength="30" >
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-row">
+
+                        <div class="form-group col">
+                            <label for="inputEmail4">จังหวัด</label>
+                            <select class="form-control" name="province" >
+                                <option selected disabled>เลือกจังหวัด</option>
+                                <option>ตราด</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col">
+                            <label for="inputEmail4">รหัสไปรษณีย์</label>
+                            <input type="text" class="form-control" name="zipCode" id="zipCode" maxlength="5" >
+                        </div>
+
+                    </div>
+
+                    <button class="btn-green btn-full" type="submit"><span><i class="fas fa-save"></i>
+                            บันทึก</span></button>
+
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+<!-- contenr -->
+
+</body>
+
+
+
+</html>
+
+<%- include('../layouts/javascript'); -%>
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script>
+    function validateForm() {
+        var x = document.getElementById("form").getElementsByClassName("form-control");
+        var email = document.getElementById("email").value;
+        console.log(x);
+        console.log(email);
+        for (var i = 0; i < x.length; i++) {
+            console.log(x[i].value)
+            if (x[i].value == "") {
+                swal({
+                    title: "",
+                    text: "กรุณากรอกข้อมูลให้ครบถ้วน",
+                    icon: "error",
+                    button: "ตกลง",
+
+                })
+                return false;
+            }
+
+        }
+
+        if (isValidEmailAddress(email) == false) {
+            swal("", "อีเมลไม่ถูกกต้อง", "error")
+            return false;
+        }
+    }
+
+    function isValidEmailAddress(emailAddress) {
+        return /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/.test(emailAddress);
+    };
+
+
+    $(document).ready(function () {
+        //called when key is pressed in textbox
+        $("#idCard,#tel,#zipCode").keypress(function (e) {
+            //if the letter is not digit then display error and don't type anything
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                //display error message
+                //   $("#errmsg").html("กรุณากรอกเลชบัตรประชาชนให้ถูกต้อง").show().fadeOut("slow");
+                return false;
+            }
+        });
+    });
+</script>

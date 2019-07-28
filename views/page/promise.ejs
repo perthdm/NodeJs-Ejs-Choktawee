@@ -1,0 +1,98 @@
+<%- include('../layouts/header', {title: 'สัญญาซื้อ-ขาย'}); -%>
+<%- include('../layouts/css'); -%>
+<%- include('../layouts/endheader'); -%>
+<%- include('../layouts/sidebar',{active:'reportPromise'}); -%>
+<%- include('../layouts/topbar'); -%>
+<%- include('../layouts/banner'); -%>
+
+
+
+
+<!-- contenr -->
+
+<div class="content">
+
+    <div class="title">
+        <span><i class="fas fa-home "></i> สัญญาซื้อ-ขาย</span>
+        <div class="line"></div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="form-group col">
+            <input type="email" class="form-control" id="inputEmail4" placeholder="ค้นหารหัส/ชื่อลูกค้า">
+        </div>
+        <div class="form-group col-2">
+
+            <button class="btn-light-green btn-full"><span><i class="fas fa-search"></i> ค้นหา</span></button>
+
+        </div>
+        <div class="form-group col-2">
+            <button class="btn-green btn-full"><span><i class="fas fa-plus-circle"></i> เพิ่มลูกค้า</span></button>
+
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-sm">
+            <thead class="thead-light">
+                <tr>
+                    <th>#</th>
+                    <th>รหัสลูกค้า</th>
+                    <th>ชื่อ - นามสกุล</th>
+                    <th>E-mail</th>
+                    <th>Handle</th>
+                    <th>ตัวเลือก</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+
+                    <td class="text-center">1239900258236</td>
+                    <td>นายนพรัตน์ พันธ์ศร</td>
+                    <td>email@hotmail.com</td>
+                    <td>0873698752</td>
+                    <td class="text-center"> <button class="btn-show"><span><i class="fas fa-eye"></i></span></button>
+                        <button class="btn-edit"><span><i class="fas fa-edit"></i></i></span></button>
+                        <button class="btn-remove"><span><i class="fas fa-trash-alt"></i></span></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-center">1239900258236</td>
+                    <td>นางสาววรรณวิมล บุญกระจ่างโสภ</td>
+                    <td>email1@hotmail.com</td>
+                    <td>0897456321</td>
+                    <td class="text-center"> <button class="btn-show"><span><i class="fas fa-eye"></i></span></button>
+                        <button class="btn-edit"><span><i class="fas fa-edit"></i></i></span></button>
+                        <button class="btn-remove"><span><i class="fas fa-trash-alt"></i></span></button>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="text-center">1239900258236</td>
+                    <td>นายอธิพงศ์ ตรงเทยี่งธรรม</td>
+                    <td>email2@hotmail.com</td>
+                    <td>0861234561</td>
+                    <td class="text-center"> <button class="btn-show"><span><i class="fas fa-eye"></i></span></button>
+                        <button class="btn-edit"><span><i class="fas fa-edit"></i></i></span></button>
+                        <button class="btn-remove"><span><i class="fas fa-trash-alt"></i></span></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<!-- contenr -->
+
+
+
+
+</body>
+
+</html>
+<%- include('../layouts/javascript'); -%>

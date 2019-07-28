@@ -1,0 +1,109 @@
+<!-- Sidebar -->
+<div class="sidebar">
+    <a href="#"><i class="fas fa-bars bt-close"
+            style="color:#FFF; margin-left:250px; margin-top:10px; font-size:20px;"></i></a>
+    <div class="logo">
+        <img src="/images/logo.svg">
+        <div class="title">โชคทวีออโต้เซลล์</div>
+    </div>
+
+    <div class="menu">
+        <ul>
+
+            <% if (active=="home") { %>
+            <a href="/home">
+                <li class="active"><i class="fas fa-home "></i>หน้าแรก</li>
+            </a>
+            <% } else { %>
+            <a href="/home">
+                <li class=""><i class="fas fa-home "></i>หน้าแรก</li>
+            </a>
+            <% } %>
+
+            <% if (active=="dashboard") { %>
+            <a href="/dashboard">
+                <li class="active"><i class="fas fa-chart-line"></i>สรุปผล</li>
+            </a>
+            <% } else { %>
+            <a href="/dashboard">
+                <li class=""><i class="fas fa-chart-line"></i>สรุปผล</li>
+            </a>
+            <% } %>
+
+
+            <% if (active=="customer") { %>
+            <a href="/customer">
+                <li class="active"><i class="fas fa-user"></i>จัดการลูกค้า</li>
+            </a>
+            <% } else { %>
+            <a href="/customer">
+                <li class=""><i class="fas fa-user"></i>จัดการลูกค้า</li>
+            </a>
+            <% } %>
+
+
+
+            <% if (active=="service") { %>
+            <a href="/report/service">
+                <li class="active"><i class="fas fa-clipboard-list "></i>รายงานการบริการ</li>
+            </a>
+            <% } else { %>
+            <a href="/report/service">
+                <li><i class="fas fa-clipboard-list "></i>รายงานการบริการ</li>
+            </a>
+            <% } %>
+
+            <% if (active=="user") { %>
+            <a href="/user">
+                <li class="active"><i class="fas fa-user-shield"></i>จัดการพนักงาน</li>
+            </a>
+            <% } else { %>
+            <a href="/user">
+                <li><i class="fas fa-user-shield"></i>จัดการพนักงาน</li>
+            </a>
+            <% } %>
+
+
+
+            <% if (active=="wage") { %>
+            <a href="/stock/stockWage">
+                <li class="active"><i class="fas fa-user-shield"></i>อัตราค่าบริการ</li>
+            </a>
+            <% } else { %>
+            <a href="/stock/stockWage">
+                <li><i class="fas fa-user-shield"></i>อัตราค่าบริการ</li>
+            </a>
+            <% } %>
+
+
+            <% if (active=="stock") { %>
+            <a href="/stock">
+                <li class="active"><i class="fas fa-user-shield"></i>คลังอะไหล่</li>
+            </a>
+            <% } else { %>
+            <a href="/stock">
+                <li><i class="fas fa-user-shield"></i>คลังอะไหล่</li>
+            </a>
+            <% } %>
+
+
+            <% if (active=="stockcar") { %>
+            <a href="/stock/stockcar">
+                <li class="active"><i class="fas fa-user-shield"></i>คลังรถ</li>
+            </a>
+            <% } else { %>
+            <a href="/stock/stockcar">
+                <li><i class="fas fa-user-shield"></i>คลังรถ</li>
+            </a>
+            <% } %>
+
+
+
+
+
+        </ul>
+    </div>
+</div>
+
+
+<!-- Sidebar -->

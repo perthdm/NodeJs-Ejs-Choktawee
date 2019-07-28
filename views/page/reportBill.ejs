@@ -1,0 +1,138 @@
+<%- include('../layouts/header', {title: 'ออกใบเสร็จ/ใบกำกับภาษี'}); -%>
+<%- include('../layouts/css'); -%>
+<%- include('../layouts/endheader'); -%>
+<%- include('../layouts/sidebar',{active:'reportBill'}); -%>
+<%- include('../layouts/topbar'); -%>
+<%- include('../layouts/banner'); -%>
+
+
+
+<!-- contenr -->
+
+<div class="content">
+
+    <div class="title">
+        <span><i class="fas fa-file-invoice-dollar "></i> ใบเสร็จ/ใบกำกับภาษี</span>
+        <div class="line"></div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="form-group col">
+            <input type="text" class="form-control" placeholder="ค้นหาชื่อลูกค้า หรือ เลขที่ใบเสร็จ" id="myInput"
+                onkeyup="search()" maxlength="30">
+        </div>
+        <!-- 
+        <div class="form-group col-2">
+            <button class="btn-light-green btn-full"><span><i class="fas fa-search"></i> ค้นหา</span></button>
+        </div>
+        -->
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-sm" id="myTable">
+            <thead class="thead-light">
+                <tr>
+                    <th>ลำดับ</th>
+                    <th>เลขที่ใบเสร็จ/ใบกำกับภาษี</th>
+                    <th>ชื่อ - นามสกุล</th>
+                    <th>ยอดรวม</th>
+                    <th>ประเภทเอกสาร</th>
+                    <!-- <th>สถานะ</th> -->
+                    <th>ตัวเลือก</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(var i=0;i<2;i++) {%>
+                <tr>
+
+                    <td class="text-center">
+                        <%= i+1 %>
+                    </td>
+                    <td class="text-center">
+                        <%= result[i]._id %>
+                    </td>
+                    <td class="text-center">
+                        <%= result[i].order.customer.firstname %>
+                        <%= result[i].order.customer.lastname %>
+                    </td>
+                    <td class="text-center">
+                        <%= result[i].total.toLocaleString() %>
+                    </td>
+                    <% if(i%2 == 0) {%>
+                    <td class="text-center">ใบกำกับภาษี</td>
+                    <% }else{ %>
+                    <td class="text-center">ใบเสร็จ</td>
+                    <% } %>
+                    <!-- <td class="text-center"><span class="badge badge-danger">ยกเลิก</span></td> -->
+                    <% if(i%2 == 0) {%>
+                    <td class="text-center">
+                        <a href="/report/vat/<%= result[i]._id %>" target="_blank"><button class="btn-show"><span><i
+                                        class="fas fa-eye"></i></span></button></a>
+
+                    </td>
+                    <% }else{ %>
+                    <td class="text-center">
+                        <a href="/report/bill/<%= result[i]._id %>" target="_blank"><button class="btn-show"><span><i
+                                        class="fas fa-eye"></i></span></button></a>
+
+                    </td>
+                    <% } %>
+
+                </tr>
+                <% } %>
+
+                <!-- <tr>
+                        <td class="text-center">1239900258236</td>
+                        <td>นายอธิพงศ์ ตรงเทยี่งธรรม</td>
+                        <td class="text-right">365,000.00</td>
+                        <td class="text-center">ใบเสร็จ</td>
+                        <td class="text-center"> <span class="badge badge-success">ใช้งาน</span></td>
+                        <td class="text-center"> 
+                            <a href="/report/bill" target="_blank"><button class="btn-show"><span><i class="fas fa-eye"></i></span></button></a>
+                           
+                        </td>
+                        </td>
+                    </tr> -->
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<!-- contenr -->
+
+
+<script>
+    function search() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            td2 = tr[i].getElementsByTagName("td")[2];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                txtValue2 = td2.textContent || td2.innerText;
+
+                if (txtValue.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+
+
+
+</body>
+
+</html>
+<%- include('../layouts/javascript'); -%>

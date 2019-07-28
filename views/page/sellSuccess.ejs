@@ -1,0 +1,123 @@
+<%- include('../layouts/header', {title: 'ขายรถ : การทำรายการสำเร็จ'}); -%>
+<%- include('../layouts/css'); -%>
+<%- include('../layouts/endheader'); -%>
+<%- include('../layouts/sidebar',{active:'home'}); -%>
+<%- include('../layouts/topbar'); -%>
+
+<div class="content" id="step4" >
+        <div class="title margin-top-30">
+            <img src="/images/sellcar.svg" width="200px">
+            <span> ขายรถ </span>
+            <div class="line"></div>
+        </div>
+        <center>
+            <div class="stepwizard">
+                <div class="stepwizard-row">
+                    <div class="stepwizard-step">
+                        <button type="button" class="btn-circle btn-green-step">1</button>
+                        <p class="color-green">ข้อมูลลูกค้า</p>
+                    </div>
+                    <div class="stepwizard-step">
+                        <button type="button" class="btn-circle btn-green-step">2</button>
+                        <p class="color-green">ข้อมูลรถ</p>
+                    </div>
+                    <div class="stepwizard-step">
+                        <button type="button" class="btn-circle btn-green-step">3</button>
+                        <p class="color-green">สรุปการทำรายการ</p>
+                    </div>
+                    <div class="stepwizard-step">
+                        <button type="button" class="btn-circle btn-green-step">4</button>
+                        <p class="color-green">การทำรายการสำเร็จ</p>
+                    </div>
+                </div>
+            </div>
+        </center>
+        <div class="row">
+            <div class="form-group col text-green">
+                ข้อมูลลูกค้า
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div style="padding-left: 30px">ชื่อ-นามสกุล : <%= data.customer.firstname %> <%= data.customer.lastname %>
+                    <br> เลขประจำตัวประชาชน/เลขที่ผู้เสียภาษี : <%= data.customer.idCard %>
+                    <br> ที่อยู่ : <%= data.customer.address.addressNumber %> <%= data.customer.address.street %> <%= data.customer.address.district %> <%= data.customer.address.province %> <%= data.customer.address.zipCode %>
+                </div>
+            </div>
+    
+            <div class="col">
+                <div style="padding-right: 30px">
+                    E-mail : <%= data.customer.email %>
+                    <br> เบอร์โทรศัพท์ : <%= data.customer.tel %>
+                </div>
+            </div>
+        </div>
+
+
+        <br>
+        <div class="row">
+            <div class="form-group col text-green">
+                ข้อมูลรถ
+            </div>
+        </div>
+        <div class="row">
+            <div class="col ">
+                <div style="padding-left: 30px">
+                    ยี่ห้อ : <%= data.car.brand %> <br> หมายเลขตัวถัง :  <%= data.car.idTank %> <br>
+                    เลขทะเบียน : <%= data.car.idCar %>  <br> สี :  <%= data.car.color %><br>
+                </div>
+    
+            </div>
+    
+    
+            <div class="col">
+                <div style="padding-right: 30px">
+                    รุ่น : <%= data.car.model %> <br> หมายเลขเครื่องยนต์ : <%= data.car.idMotor %> <br>
+                    เชื้อเพลิง : <%= data.car.fuel %><br> รุ่นปี : <%= data.car.year %></span>
+                </div>
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="form-group col text-green">
+                ข้อมูลค่าใช้จ่าย
+            </div>
+        </div>
+    
+        <div class="table-responsive">
+            <table class="table table-sm">
+                <thead class="thead-light">
+                    <tr>
+                        <th>ลำดับที่</th>
+                        <th>รายการ</th>
+                        <th>ราคา</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center">1</td>
+                        <td class="text-center"><%= data.car.brand %> <%= data.car.model %></td>
+                        <td class="text-center"><%= data.car.price %></td>
+                    </tr>
+                    <tr>
+                        <td class="text-center"></td>
+                       
+                        <td class="text-center">รวมทั้งสิ้น</td>
+                        <td class="text-center"><%= data.total %></td>
+                    </tr>
+    
+                </tbody>
+            </table>
+        </div>
+        <div class="row margin-top-30">
+            <div class="col text-left"></div>
+            <div class="col text-right">
+                <a href="/report/showpromise/<%= data._id %>" target="_blank"><button
+                        class="btn-green "><span>ออกสัญญาซื้อขาย</span></button><br></a>
+                        <a href="/report/bill/<%= data._id %>"><button class="btn-green "><span>ออกใบเสร็จ</span></button></a><br>
+                        <a href="/report/vat/<%= data._id %>" ><button class="btn-green "><span>ออกกำกับภาษี</span></button></a>
+            </div>
+        </div>
+    
+    </div> 
+    <%- include('../layouts/javascript'); -%>
